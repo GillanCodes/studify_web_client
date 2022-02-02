@@ -1,0 +1,47 @@
+.profil-container {
+
+    display: flex;
+    // justify-content: space-evenly;
+
+
+    .profil-content{  
+
+    }
+
+    .profil {
+
+        margin-top: 50px;
+        margin-left: 150px;
+        margin-right: 5em;
+
+        .head {
+            img {
+                height: 180px;
+                width: 180px;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+
+            h3 {
+                text-align: center;
+            }
+        }
+
+    }
+
+    .sheets{
+        
+        .title {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+    }
+
+    .sheets-container {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+}

@@ -1,0 +1,60 @@
+.file {
+
+    margin: 10px;
+    
+    width: 250px;
+    height: 150px;
+
+    border: 2px solid $border;
+    border-radius: 10px;
+
+    box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    transition-duration: 0.2s;
+
+    .file-head {
+        height: 115px;
+        text-align: center;
+        font-size: 75px;
+
+        p{
+            padding-top: 10px;
+        }
+    }
+
+    .file-footer {
+
+        border-top: 1px solid $border; 
+        height: 35px;
+        width: 100%;       
+        
+
+        .sheet-title {
+            font-size: 20px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .tag {
+
+            padding: 2px;
+            margin: 15px;
+            border-radius: 5px;
+            font-size: 15px;
+
+        }
+
+    }
+
+}
+
+.file:hover{
+    box-shadow: 20px 23px 29px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 20px 23px 29px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 20px 23px 29px -15px rgba(0,0,0,0.75);
+
+    transition-duration: 0.2s;
+
+    cursor: pointer;
+}

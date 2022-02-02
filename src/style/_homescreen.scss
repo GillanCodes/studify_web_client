@@ -1,0 +1,13 @@
+.homescreen-container {
+
+    .homescreen-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        justify-content: center;
+        
+        padding: 25px;
+    }
+
+}
