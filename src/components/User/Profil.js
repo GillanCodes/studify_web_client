@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loading from '../Modules/Loading';
 import { isEmpty } from '../Utils';
 import ProfilEditor from './ProfilEditor';
 import ProfilViewer from './ProfilViewer';
+import { UIdContext } from '../App.context';
 
 export default function Profil() {
 
     const { username } = useParams();
 
     const [isLoading, setIsLoading] = useState(true);
-    const [logged, setLogged] = useState(false);
+    const UId = useContext(UIdContext);
 
     const usersData = useSelector(state => state.usersReducer);
-    const userData = useSelector(state => state.userReducer);
-
-    useEffect(() => {
-      if (!isEmpty(userData)) {
-        setLogged(true);
-        //TODO : add permissions
-      }
-    }, [userData]);
 
     useEffect(() => {
         if(!isEmpty(usersData)) {
@@ -37,12 +30,13 @@ export default function Profil() {
                 <>
                     {usersData.map((user) => {
                         if (user.username === username) {
-                            return (logged ? (
-                                <ProfilEditor user={user} />
-                            ) : (
-                                <ProfilViewer user={user} />
-                            ))
+                            if (user._id === UId) {
+                                return <ProfilEditor user={user} />
+                            } else {
+                                return <ProfilViewer user={user} />
+                            }
                         }
+                        return null
                     })}
                 </>
             )}
