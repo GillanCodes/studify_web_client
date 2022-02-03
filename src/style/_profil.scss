@@ -3,6 +3,17 @@
     display: flex;
     // justify-content: space-evenly;
 
+    .buttons{
+        display: flex;
+        font-size: 30px;
+        
+        justify-content: space-evenly;
+        margin-bottom: 10px;
+
+        // .button {
+        //     margin: 10px;
+        // }
+    }
 
     .profil-content{  
 
@@ -15,6 +26,7 @@
         margin-right: 5em;
 
         .head {
+
             img {
                 height: 180px;
                 width: 180px;
@@ -24,6 +36,21 @@
 
             h3 {
                 text-align: center;
+            }
+
+            input[type="file"] {
+                overflow: hidden;
+                max-width: 180px;   
+            }
+
+            input[type="text"] {
+                border: 1px solid $border;
+                padding: 0;
+                margin: 10px 0px;
+                width:178px;
+                font-size: 20px;
+                text-align: center;
+                padding: 5px 0;
             }
         }
 

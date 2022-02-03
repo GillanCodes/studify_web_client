@@ -4,11 +4,14 @@ import 'quill/dist/quill.snow.css';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
+import { useSelector } from 'react-redux';
 
 
 export default function Editor({ sheet }) {
 
-    const quillRef = useRef()
+    const userData = useSelector(state => state.userReducer);
+
+    const quillRef = useRef();
 
     const TOOLBAR_OPTIONS = {toolbar: [
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -23,6 +26,7 @@ export default function Editor({ sheet }) {
 
     const [text, setText] = useState(sheet.sheet_body);
     const [oldText, setOldText] = useState(sheet.sheet_body);
+    const [save, setSave] = useState(true);
 
     const [socket, setSocket] = useState()
 
@@ -38,8 +42,8 @@ export default function Editor({ sheet }) {
 
     const changeHandle = (content, delta, source, editor) => {
         if (source !== "user") return null;
-        console.log(content);
-        setText(content)
+        setText(content);
+        setSave(false);
         socket.emit("send-changes", content);
         
     }
@@ -52,21 +56,31 @@ export default function Editor({ sheet }) {
     }, [socket, sheet])
 
     useEffect(() => {
+        if (!isEmpty(socket) && (!isEmpty(userData))) {
+            socket.emit('new-user', userData);
+        }
+        return 
+    }, [socket, userData])
+
+    useEffect(() => {
         if(socket !== undefined) {
-            console.log(socket)
+            socket.on('current-users', users => {
+                console.log(users)
+            });
+        }
+    }, [socket])
+
+    useEffect(() => {
+        if(socket !== undefined) {
             socket.on('receive-changes', content => {
                 quillRef.current.setEditorContents(quillRef.current.getEditor(), content)
             });
         }
-        // socket.on('recieve-changes', content => {
-        //     console.log(content);
-        // })s
     }, [socket])
     
     useEffect(() => {
-        console.log(oldText === text)
-
         if (oldText === text){
+            setSave(true);
             return null
         } else {
             var interval = setInterval(() => {
@@ -80,6 +94,7 @@ export default function Editor({ sheet }) {
                     }
                 }).then(() => {
                     setOldText(text);
+                    setSave(true);
                 })
             }, 2000);
         
@@ -91,6 +106,18 @@ export default function Editor({ sheet }) {
 
   return (
       <div>
+            <div className="editor-toolbar">
+                <div className="buttons left">
+                    <p className="button">test</p>
+                    <p className="button">test</p>
+                    <p className="button">test</p>
+                    <p className="button">test</p>
+                </div>
+                <div className="buttons right">
+                    <p className="button">{save ? 'Saved !' : "Progress save"}</p>
+                    <p className="button"></p>
+                </div>
+            </div>
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />
       </div>
   );

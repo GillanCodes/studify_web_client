@@ -10,7 +10,7 @@ import { isEmpty } from './Utils';
 export default function Sheet() {
 
     const {id: documentId} = useParams();
-    const sheetsData = useSelector(state => state.userSheetReducer);
+    const sheetsData = useSelector(state => state.sheetsReducer);
     const uid = useContext(UIdContext);
 
     const [isLoading, setIsLoading] = useState(true);
