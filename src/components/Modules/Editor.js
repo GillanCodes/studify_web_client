@@ -5,6 +5,7 @@ import axios from 'axios';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 
 
 export default function Editor({ sheet }) {
@@ -28,6 +29,7 @@ export default function Editor({ sheet }) {
     const [oldText, setOldText] = useState(sheet.sheet_body);
     const [save, setSave] = useState(true);
 
+    const [currentUsers, setCurrentUsers] = useState();
     const [socket, setSocket] = useState()
 
     useEffect(() => {
@@ -64,8 +66,9 @@ export default function Editor({ sheet }) {
 
     useEffect(() => {
         if(socket !== undefined) {
-            socket.on('current-users', users => {
-                console.log(users)
+            socket.on('current-users', documentData => {
+                console.log(documentData.users);
+                setCurrentUsers(documentData.users);
             });
         }
     }, [socket])
@@ -114,9 +117,23 @@ export default function Editor({ sheet }) {
                     <p className="button">test</p>
                 </div>
                 <div className="buttons right">
-                    <p className="button">{save ? 'Saved !' : "Progress save"}</p>
-                    <p className="button"></p>
+                    <p className="button">{save ? <p><i className="fas fa-hdd"></i> Sauvé</p> : <p><i className="fas fa-sync fa-spin"></i> Enregistrement </p> }</p>
                 </div>
+            </div>
+
+            <div className="current-users">
+                {currentUsers && (
+                    <>
+                        {currentUsers.map((user) => {
+                            return (
+                                <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
+                            )
+                        })}
+                        <ReactTooltip effect="solid" />
+                    </>
+                )}
+
+                
             </div>
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />
       </div>

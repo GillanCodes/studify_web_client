@@ -7,7 +7,7 @@
     top: 0;
     z-index: 2;
 
-    background-color: $toolbar;
+    background-color: #000;
 
     .buttons {
         display: flex;
@@ -26,5 +26,27 @@
         margin-right: 0;
     }
     
+
+}
+
+.current-users {
+
+    position: absolute;
+    right: 10px;
+    top: 150px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    z-index: 2;
+
+    img.indicator {
+        height: 48px;
+        width: 48px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+
+    }
 
 }

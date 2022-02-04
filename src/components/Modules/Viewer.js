@@ -3,10 +3,13 @@ import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
+import { useSelector } from 'react-redux';
 
 export default function Viewer({ sheet }) {
 
-    const [socket, setSocket] = useState()
+    const [socket, setSocket] = useState();
+
+    const userData = useSelector(state => state.userReducer)
 
     const quillRef = useRef()
     
@@ -18,6 +21,21 @@ export default function Viewer({ sheet }) {
             s.disconnect();
         }
     }, []);
+
+    useEffect(() => {
+        if (!isEmpty(socket) && (!isEmpty(userData))) {
+            socket.emit('new-user', userData);
+        }
+        return 
+    }, [socket, userData])
+
+    useEffect(() => {
+        if(socket !== undefined) {
+            socket.on('current-users', documentData => {
+                console.log(documentData);
+            });
+        }
+    }, [socket])
 
     useEffect(() => {
         if (!isEmpty(socket)) {
