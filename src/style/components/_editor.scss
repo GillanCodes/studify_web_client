@@ -26,6 +26,11 @@
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
   }
   
+  .sheet-container .viewer .ql-toolbar.ql-snow {
+    display: none;
+  }
+  
+
   @page {
     margin: 1in;
   }

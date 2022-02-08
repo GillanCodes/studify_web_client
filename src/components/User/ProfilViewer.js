@@ -24,7 +24,7 @@ export default function ProfilViewer({ user }) {
 
                 <div className="head">
                     <img src={user.userPic} alt="PP"/>
-                    <h3 className='username'>{user.displayName ? user.displayName : user.username }</h3>
+                    <h1 className='username'>{user.displayName ? user.displayName : user.username }</h1>
                 </div>
 
             </div>

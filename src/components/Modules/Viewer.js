@@ -4,10 +4,12 @@ import 'quill/dist/quill.snow.css';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 
 export default function Viewer({ sheet }) {
 
     const [socket, setSocket] = useState();
+    const [currentUsers, setCurrentUsers] = useState();
 
     const userData = useSelector(state => state.userReducer)
 
@@ -32,7 +34,7 @@ export default function Viewer({ sheet }) {
     useEffect(() => {
         if(socket !== undefined) {
             socket.on('current-users', documentData => {
-                console.log(documentData);
+                setCurrentUsers(documentData.users);
             });
         }
     }, [socket])
@@ -54,7 +56,20 @@ export default function Viewer({ sheet }) {
     }, [socket])
 
   return (
-      <div>
+      <div className='viewer'>
+
+            {currentUsers && (
+                <>
+                    <div className="current-users">
+                        {currentUsers.map((user) => {
+                            return (
+                                <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
+                            )
+                        })}    
+                    </div>
+                    <ReactTooltip effect="solid"  />
+                </>
+            )}
           <ReactQuill readOnly={true} defaultValue={sheet.sheet_body} ref={quillRef} />
       </div>
   );

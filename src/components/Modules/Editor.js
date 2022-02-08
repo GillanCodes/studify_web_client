@@ -7,7 +7,6 @@ import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 
-
 export default function Editor({ sheet }) {
 
     const userData = useSelector(state => state.userReducer);
@@ -24,6 +23,9 @@ export default function Editor({ sheet }) {
         [{ align: [] }],
         ["blockquote", "code-block"],
     ]}
+
+    const [tag, setTag] = useState(sheet.tag ? sheet.tag : "");
+    const [title, setTitle] = useState(sheet.title);
 
     const [text, setText] = useState(sheet.sheet_body);
     const [oldText, setOldText] = useState(sheet.sheet_body);
@@ -48,6 +50,21 @@ export default function Editor({ sheet }) {
         setSave(false);
         socket.emit("send-changes", content);
         
+    }
+
+    const saveTitleHandle = () => {
+        axios({
+            method: 'put',
+            withCredentials: true,
+            url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
+            data: {
+                title: title,
+                tag: tag,
+                sheet_body: text
+            }
+        }).then(() => {
+            setSave(true);
+        })
     }
 
     useEffect(() => {
@@ -93,7 +110,7 @@ export default function Editor({ sheet }) {
                     withCredentials: true,
                     url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
                     data: {
-                        sheet_body: text
+                        sheet_body: text,
                     }
                 }).then(() => {
                     setOldText(text);
@@ -111,10 +128,9 @@ export default function Editor({ sheet }) {
       <div>
             <div className="editor-toolbar">
                 <div className="buttons left">
-                    <p className="button">test</p>
-                    <p className="button">test</p>
-                    <p className="button">test</p>
-                    <p className="button">test</p>
+                    <input type="text" name="tag" id="tag" value={tag} onChange={(e) => setTag(e.target.value) & setSave(false)} />
+                    <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value) & setSave(false)} />
+                    <p className="button" onClick={saveTitleHandle}>Enregistrer</p>
                 </div>
                 <div className="buttons right">
                     <p className="button">{save ? <p><i className="fas fa-hdd"></i> Sauvé</p> : <p><i className="fas fa-sync fa-spin"></i> Enregistrement </p> }</p>
@@ -129,13 +145,13 @@ export default function Editor({ sheet }) {
                                 <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
                             )
                         })}
-                        <ReactTooltip effect="solid" />
+                        <ReactTooltip effect="solid" place='bottom' />
                     </>
                 )}
-
-                
             </div>
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />
       </div>
+
+      
   );
 }

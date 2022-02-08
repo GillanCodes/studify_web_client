@@ -16,8 +16,12 @@ export default function ProfilEditor({ user }) {
 
     const sheetsData = useSelector(state => state.sheetsReducer);
 
-    const saveHandle = (e) => {    
+    const saveHandle = (e) => {
         
+        if (isEmpty(displayName)) {
+            setDisplayName(user.username)
+        }
+
         if (displayName !== user.displayName) {
             axios({
                 method: 'PUT',
@@ -79,7 +83,7 @@ export default function ProfilEditor({ user }) {
                 ) : (
                     <div className="head">
                         <img src={user.userPic} alt="PP"/>
-                        <h3 className='username'>{displayName}</h3>
+                        <h1 className='username'>{displayName}</h1>
                     </div>
                 )}
             </div>
