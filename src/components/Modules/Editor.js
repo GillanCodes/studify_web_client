@@ -6,6 +6,7 @@ import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+import EditorToolbar from './ToolBar/EditorToolbar';
 
 export default function Editor({ sheet }) {
 
@@ -30,6 +31,7 @@ export default function Editor({ sheet }) {
     const [text, setText] = useState(sheet.sheet_body);
     const [oldText, setOldText] = useState(sheet.sheet_body);
     const [save, setSave] = useState(true);
+    const [toolbar, setToolbar] = useState(false);
 
     const [currentUsers, setCurrentUsers] = useState();
     const [socket, setSocket] = useState()
@@ -125,32 +127,17 @@ export default function Editor({ sheet }) {
     }, [text, oldText, sheet]);
 
   return (
-      <div>
-            <div className="editor-toolbar">
-                <div className="buttons left">
-                    <input type="text" name="tag" id="tag" value={tag} onChange={(e) => setTag(e.target.value) & setSave(false)} />
-                    <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value) & setSave(false)} />
-                    <p className="button" onClick={saveTitleHandle}>Enregistrer</p>
-                </div>
-                <div className="buttons right">
-                    <p className="button">{save ? <p><i className="fas fa-hdd"></i> Sauvé</p> : <p><i className="fas fa-sync fa-spin"></i> Enregistrement </p> }</p>
-                </div>
-            </div>
-
-            <div className="current-users">
-                {currentUsers && (
-                    <>
-                        {currentUsers.map((user) => {
-                            return (
-                                <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
-                            )
-                        })}
-                        <ReactTooltip effect="solid" place='bottom' />
-                    </>
+        <div>
+            <div className="save">
+                {save ? (
+                    <i className="fas fa-save" data-tip="Document Sauvegarder"></i>
+                ) : (
+                    <i className="fas fa-sync fa-spin" data-tip="Enregistrement en Cours ..."></i>
                 )}
-            </div>
+            </div> 
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />
-      </div>
+            <ReactTooltip effect='solid' />
+        </div>
 
       
   );

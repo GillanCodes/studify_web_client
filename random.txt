@@ -1,0 +1,12 @@
+<div className="current-users">
+    {currentUsers && (
+        <>
+            {currentUsers.map((user) => {
+                return (
+                    <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
+                )
+            })}
+            <ReactTooltip effect="solid" place='bottom' />
+        </>
+    )}
+</div>

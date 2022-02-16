@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotifications } from '../../action/notification.action';
+import { isEmpty } from '../Utils';
 import NotificationBox from './NotificationBox';
 
 export default function Notification() {
@@ -28,17 +29,17 @@ export default function Notification() {
         }
     }
 
-    // useEffect(() => {
-    //   if (!isEmpty(notificationsData)) {
-    //       var i=0
-    //       for(i=0; i < notificationsData.length; i++) {
-    //           if (notificationsData[i].readed === false) {
-    //               setUnread(unread + 1);
-    //           }
-    //       }
-    //   }
-    // }, [notificationsData]);
-    
+    useEffect(() => {
+        var i = 0
+        if (!isEmpty(notificationsData)) {
+            notificationsData.map((notification) => {
+                if (!notification.readed){
+                    i = i + 1;
+                }
+            });
+            setUnread(i);
+        }
+    }, [notificationsData])    
 
   return (
       <>

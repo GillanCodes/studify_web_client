@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 30px;
+    top: 0px;
     z-index: 1;
     background-color: #F3F3F3;
     border: none;
@@ -52,4 +52,14 @@
     .sheet-container .ql-toolbar.ql-snow {
       display: none;
     }
+  }
+
+  .save {
+    position: fixed;
+    bottom: 75px;
+    left: 75px;
+
+    font-size: 30px;
+    z-index: 2;
+
   }

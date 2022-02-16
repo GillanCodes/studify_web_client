@@ -22,9 +22,9 @@ export default function Login() {
         }).then((res) => {
             if (res.data.errors) {
                 setNotificationDisplay(true);
-                const Error = document.querySelector('.error');
-                if (res.data.errors.username) Error.innerHTML = res.data.errors.username;
-                if (res.data.errors.password) Error.innerHTML = res.data.errors.password;
+                const Error = document.querySelector('.log-error');
+                if (res.data.errors.username) return Error.innerHTML = res.data.errors.username;
+                if (res.data.errors.password) return Error.innerHTML = res.data.errors.password;
             } else {
                 window.location = '/';
             }
@@ -41,7 +41,8 @@ export default function Login() {
 
             {NotificationDisplay && (
                     <>
-                        <div className="notification is-danger is-light error">
+                        <div className="notification is-danger is-light">
+                            <p className='log-error'></p>
                         </div>
                     </>
                 )}

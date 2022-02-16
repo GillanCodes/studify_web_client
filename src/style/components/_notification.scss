@@ -14,6 +14,11 @@
 
 }
 
+.dropdown-content::-webkit-scrollbar {
+  // Chrome, safari opera
+  display: none; 
+}
+
 .dropdown-content {
   display: block;
   position: absolute;
@@ -31,6 +36,9 @@
   border: 1px solid $border;
   border-radius: 10px;
   box-shadow: 10px 10px 10px #000;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* Links inside the dropdown */
@@ -59,7 +67,25 @@
 
   .notification-content {
     font-size: 12px;
+  }
 
+  .controls {
+    position: absolute;
+    right:15px;
+    margin: auto;
+
+    span {
+      margin: 5px;
+      font-size: 18px;
+
+      .delete {
+        color: $error2;
+      }
+
+      .unread {
+        color: $black
+      }
+    }
   }
 
 }
