@@ -27,21 +27,27 @@
 
         border-top: 1px solid $border; 
         height: 35px;
-        width: 100%;       
+        width: 100%;
+        display: flex;
+        align-items: center;
         
 
         .sheet-title {
             font-size: 20px;
+            margin: auto;
             text-align: center;
             text-decoration: underline;
         }
 
         .tag {
-
             padding: 2px;
             margin: 15px;
             border-radius: 5px;
             font-size: 15px;
+            width: 50px;
+            overflow: hidden;
+            text-align: center;
+            // background-color: $tag-color;
 
         }
 
