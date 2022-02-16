@@ -10,7 +10,10 @@ export default function File({ sheet, author }) {
             <div className="file-footer">
                 {sheet.tag && (
                     <p className='tag' 
-                    style={{backgroundColor: "#" + sheet.tag.background_color, color: "#" + sheet.tag.text_color}}>
+                    style={
+                            {backgroundColor: "#" + sheet.tag.background_color, 
+                             color: "#" + sheet.tag.text_color}
+                        }>
                         {sheet.tag.text}
                     </p>
                 )}

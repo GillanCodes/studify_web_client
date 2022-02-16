@@ -25,7 +25,11 @@ export default function Editor({ sheet }) {
         ["blockquote", "code-block"],
     ]}
 
-    const [tag, setTag] = useState(sheet.tag ? sheet.tag : "");
+    const [tag_text, setTag_text] = useState(sheet.tag.text ? sheet.tag.text : "");
+    const [tag_bg_color, setTag_bg_color] = useState(sheet.tag.background_color);
+    const [tag_text_color, setTag_text_color] = useState(sheet.tag.text_color);
+    
+    
     const [title, setTitle] = useState(sheet.title);
 
     const [text, setText] = useState(sheet.sheet_body);
@@ -55,16 +59,17 @@ export default function Editor({ sheet }) {
     }
 
     const saveTitleHandle = () => {
-
-        // TODO : TAG SYS FIX NEEDED
-
         axios({
             method: 'put',
             withCredentials: true,
             url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
             data: {
                 title: title,
-                tag: tag,
+                tag: {
+                    text: tag_text,
+                    tag_bg_color: tag_bg_color,
+                    tag_text_color: tag_text_color
+                },
                 sheet_body: text
             }
         }).then(() => {
