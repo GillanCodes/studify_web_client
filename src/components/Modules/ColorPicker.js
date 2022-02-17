@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
 
-class Tag extends React.Component {
+class ColorPicker extends React.Component {
   state = {
     color: {
       r: '85',
@@ -24,4 +24,4 @@ class Tag extends React.Component {
   }
 }
 
-export default Tag
+export default ColorPicker

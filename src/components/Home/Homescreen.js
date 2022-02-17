@@ -55,7 +55,7 @@ export default function Homescreen() {
                     ) : (
                         <>
                             {sheetsData.map((sheet) => {
-                                if (sheet.author === userData._id) {
+                                if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
                                     return <File sheet={sheet} key={sheet._id}/>
                                 } 
                                 return null

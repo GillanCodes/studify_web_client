@@ -31,7 +31,7 @@ export default function Sheet() {
                 <>
                     {sheetsData.map((sheet) => {
                         if (sheet._id === documentId) {
-                            if (sheet.author === uid) {
+                            if (sheet.author === uid || sheet.team.includes(uid)) {
                                 return <Editor sheet={sheet} key={sheet._id} />
                             } else {
                                 return <Viewer sheet={sheet} key={sheet._id} />
