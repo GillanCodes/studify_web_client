@@ -53,6 +53,7 @@ export default function Homescreen() {
                     {isLoading ? (
                         <Loading />
                     ) : (
+                        // TODO : Classer les fiches auteurs et les fiches de team
                         <>
                             {sheetsData.map((sheet) => {
                                 if (sheet.author === userData._id || sheet.team.includes(userData._id)) {

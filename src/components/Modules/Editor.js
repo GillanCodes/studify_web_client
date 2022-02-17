@@ -25,9 +25,9 @@ export default function Editor({ sheet }) {
         ["blockquote", "code-block"],
     ]}
 
-    const [tag_text, setTag_text] = useState(sheet.tag.text ? sheet.tag.text : "");
-    const [tag_bg_color, setTag_bg_color] = useState(sheet.tag.background_color);
-    const [tag_text_color, setTag_text_color] = useState(sheet.tag.text_color);
+    const [tag_text, setTag_text] = useState("");
+    const [tag_bg_color, setTag_bg_color] = useState("");
+    const [tag_text_color, setTag_text_color] = useState("");
     
     
     const [title, setTitle] = useState(sheet.title);
@@ -48,6 +48,14 @@ export default function Editor({ sheet }) {
             s.disconnect();
         }
     }, [])
+
+    useEffect(() => {
+        if (!isEmpty(sheet.tag)) {
+            setTag_text(sheet.tag.text);
+            setTag_bg_color(sheet.tag.background_color);
+            setTag_text_color(sheet.tag.text_color);
+        }
+    }, [sheet])
 
 
     const changeHandle = (content, delta, source, editor) => {
