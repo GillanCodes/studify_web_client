@@ -2,19 +2,24 @@ import React from 'react'
 import { ChromePicker } from 'react-color'
 
 class ColorPicker extends React.Component {
+
   state = {
-    color: {
-      r: '85',
-      g: '85',
-      b: '85',
-    },
-  };
+    color: "#565656",
+  }
+
 
   handleChange = (color) => {
     this.setState({ color: color.rgb })
   };
 
+  getState = () => {
+    return this.state
+  }
+
+
   render() {
+
+    console.log(this.getState())
 
     return (
       <div>

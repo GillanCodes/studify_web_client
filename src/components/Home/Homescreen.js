@@ -1,16 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Modules/Loading';
 import { isEmpty } from '../Utils';
 import File from './HomeScreen/File';
+import { getSheets } from '../../action/sheets.action';
 
 export default function Homescreen() {
 
     const [isLoading, setIsLoading] = useState(true);
+    const [updated, setUpdated] = useState(false);
 
     const sheetsData = useSelector(state => state.sheetsReducer);
     const userData = useSelector(state => state.userReducer);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
       if (!isEmpty(sheetsData) && !isEmpty(userData)) {
@@ -33,6 +37,14 @@ export default function Homescreen() {
             console.log(err);
         })
     }
+
+    useEffect(() => {
+        if (!updated) {
+            dispatch(getSheets())
+            setUpdated(true)
+        }
+    }, [updated])
+    
 
 
     return (
