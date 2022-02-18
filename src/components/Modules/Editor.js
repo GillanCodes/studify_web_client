@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
-import EditorToolbar from './ToolBar/EditorToolbar';
+import SquareNav from './SquareNav/SquareNav';
 
 export default function Editor({ sheet }) {
 
@@ -150,6 +150,7 @@ export default function Editor({ sheet }) {
                 ) : (
                     <i className="fas fa-sync fa-spin" data-tip="Enregistrement en Cours ..."></i>
                 )}
+                <SquareNav />
             </div> 
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />
             <ReactTooltip effect='solid' />
