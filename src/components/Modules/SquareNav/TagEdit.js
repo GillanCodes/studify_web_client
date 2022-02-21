@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React from 'react'
 import { ChromePicker } from 'react-color'
-import { useDispatch } from 'react-redux';
 
 class TagEdit extends React.Component {
 
   state = {
-      color : '#FFF',
-      bg_color: "#565656",
-      text : ""
+    color : this.props.tag === undefined ? "#FFF" : this.props.tag.text_color,
+    bg_color: this.props.tag  === undefined ? "#565656" : this.props.tag.background_color,
+    text : this.props.tag  === undefined ? "" : this.props.tag.text
   }
 
   handleChangeColor = (color) => {
@@ -41,12 +40,14 @@ class TagEdit extends React.Component {
 
   render() {
 
-    const saved = document.getElementById('save')
+    const saved = document.getElementById('save');
+
+    console.log();
 
     const saveHandle = () => {
         return axios({
             method: 'put',
-            url: `${process.env.REACT_APP_API_URL}/api/sheet/${this.props.sheetId}`,
+            url: `${process.env.REACT_APP_API_URL}/api/sheet/${this.props.sheetId}/tag`,
             withCredentials: true,
             data: {
                 tag_text: this.getText(),
@@ -59,11 +60,12 @@ class TagEdit extends React.Component {
     }
 
     return (
+      
       <div className='tagPop'>
             <p id="save"></p>
           
             <div className="fields">
-                <input type="text" name="tag" id="tag" onChange={this.textHandle} />
+                <input type="text" name="tag" id="tag" onChange={this.textHandle} defaultValue={this.state.text}  />
                 <button onClick={saveHandle}>Sauvegarder</button>
                 <div className="tag" style={{backgroundColor:this.getBgColor(), color:this.getColor()}}>
                     <p>{this.getText()}</p>

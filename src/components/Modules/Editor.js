@@ -66,25 +66,6 @@ export default function Editor({ sheet }) {
         
     }
 
-    const saveTitleHandle = () => {
-        axios({
-            method: 'put',
-            withCredentials: true,
-            url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
-            data: {
-                title: title,
-                tag: {
-                    text: tag_text,
-                    tag_bg_color: tag_bg_color,
-                    tag_text_color: tag_text_color
-                },
-                sheet_body: text
-            }
-        }).then(() => {
-            setSave(true);
-        })
-    }
-
     useEffect(() => {
         if (!isEmpty(socket)) {
             socket.emit('get-document', sheet._id);

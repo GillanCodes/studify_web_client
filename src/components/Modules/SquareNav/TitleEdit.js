@@ -13,10 +13,14 @@ export default function TitleEdit({sheet}) {
             url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
             withCredentials: true,
             data: {
-                title
+                title,
             }
         }).then((res) => {
-            saved.innerHTML = "Titre mis a jour !"
+            if (res.data.errors) {
+                saved.innerHTML = res.data.errors.title
+            } else {
+                saved.innerHTML = "Titre mis a jour !"
+            }
         }).catch((err) => {
             console.log(err);
         })

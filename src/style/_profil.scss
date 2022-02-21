@@ -65,3 +65,25 @@
     }
 
 }
+
+.ProfilModule{
+
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 64px;
+        width: 64px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    a {
+        padding-left: 10px;
+        font-size: 18px;
+        color: $black;
+        text-decoration: none;
+    }
+
+
+}
