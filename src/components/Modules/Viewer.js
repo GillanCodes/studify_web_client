@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+import CurrentUsers from './CurrentUsers/CurrentUsers';
 
 export default function Viewer({ sheet }) {
 
@@ -56,21 +57,15 @@ export default function Viewer({ sheet }) {
     }, [socket])
 
   return (
-      <div className='viewer'>
+        <div className='viewer'>
 
-            {currentUsers && (
-                <>
-                    <div className="current-users">
-                        {currentUsers.map((user) => {
-                            return (
-                                <a href={`../${user.username}`} className="indicator" key={user.id}><img data-tip={user.username} src={user.userPic} alt="userPics" className='indicator' /> </a>
-                            )
-                        })}    
-                    </div>
-                    <ReactTooltip effect="solid"  />
-                </>
-            )}
-          <ReactQuill readOnly={true} defaultValue={sheet.sheet_body} ref={quillRef} />
-      </div>
+            <div className="save">
+                <div className="boxes">
+                    <CurrentUsers currentUsers={currentUsers} />    
+                </div>
+            </div>
+            
+            <ReactQuill readOnly={true} defaultValue={sheet.sheet_body} ref={quillRef} />
+        </div>
   );
 }

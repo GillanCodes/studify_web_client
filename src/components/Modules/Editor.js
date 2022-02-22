@@ -7,6 +7,7 @@ import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import SquareNav from './SquareNav/SquareNav';
+import CurrentUsers from './CurrentUsers/CurrentUsers';
 
 export default function Editor({ sheet }) {
 
@@ -131,7 +132,10 @@ export default function Editor({ sheet }) {
                 ) : (
                     <i className="fas fa-sync fa-spin" data-tip="Enregistrement en Cours ..."></i>
                 )}
-                <SquareNav sheet={sheet} permission={userData._id === sheet.author ? true : false} /> 
+                <div className="boxes">
+                    <SquareNav sheet={sheet} permission={userData._id === sheet.author ? true : false} /> 
+                    <CurrentUsers currentUsers={currentUsers} />    
+                </div>
             </div>
             
             <ReactQuill modules={TOOLBAR_OPTIONS} onChange={changeHandle} ref={quillRef} defaultValue={sheet.sheet_body} />

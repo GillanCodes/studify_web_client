@@ -1,5 +1,3 @@
-@import './editorToolbar';
-
 .sheet-container .ql-editor {
     width: 8.5in;
     min-height: 11in;
@@ -58,8 +56,17 @@
     position: fixed;
     bottom: 75px;
     left: 75px;
-
     font-size: 30px;
     z-index: 2;
+
+    .boxes {
+      display: flex;
+      align-items: baseline;
+      
+      .navigation {
+        margin-right: 5px;
+      }
+
+    }
 
   }

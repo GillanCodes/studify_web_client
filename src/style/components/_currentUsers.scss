@@ -1,0 +1,42 @@
+.current {
+    background: $color1;
+    color: white;
+    border-radius: 10px;
+    
+    height: 50px;
+    width: 50px;
+    transition: 0.2s;
+
+    cursor: pointer;
+    display: flex;
+
+    z-index: 1;
+
+    overflow: hidden;
+
+    img {
+        display: block;
+        margin: 9px;
+        height: 32px;
+        width: 32px;
+        object-fit: cover;
+    }
+
+}
+
+.current:hover {
+    background: $color1;
+    border-radius: 10px;
+    
+    height: 50px;
+    width: 300px;
+    transition: 0.2s;
+
+    cursor: pointer;
+    display: flex;
+
+    z-index: 1;
+
+    
+}
+
