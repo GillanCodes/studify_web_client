@@ -10,7 +10,7 @@ export default function TitleEdit({sheet}) {
     const saveHandle = () => {
         return axios({
             method: 'put',
-            url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}`,
+            url: `${process.env.REACT_APP_API_URL}/api/sheet/${sheet._id}/title`,
             withCredentials: true,
             data: {
                 title,
