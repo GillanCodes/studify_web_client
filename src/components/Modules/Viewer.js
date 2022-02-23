@@ -4,7 +4,6 @@ import 'quill/dist/quill.snow.css';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
-import ReactTooltip from 'react-tooltip';
 import CurrentUsers from './CurrentUsers/CurrentUsers';
 
 export default function Viewer({ sheet }) {
@@ -26,11 +25,11 @@ export default function Viewer({ sheet }) {
     }, []);
 
     useEffect(() => {
-        if (!isEmpty(socket) && (!isEmpty(userData))) {
+        if (!isEmpty(socket) && !isEmpty(userData)) {
             socket.emit('new-user', userData);
-        }
+        } 
         return 
-    }, [socket, userData])
+    }, [socket, userData]);
 
     useEffect(() => {
         if(socket !== undefined) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactTooltip from 'react-tooltip';
 import { isEmpty } from '../../Utils'
+import Loading from '../Loading';
 
 export default function CurrentUsers({currentUsers}) {
 
@@ -16,7 +17,7 @@ export default function CurrentUsers({currentUsers}) {
   return (
     <div className='current'>
         {isLoading ? (
-            <h1>Loading</h1>
+            <Loading />
         ) : (
             <>
                 {currentUsers.reverse().map((user) => {

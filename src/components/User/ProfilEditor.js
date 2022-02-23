@@ -16,6 +16,10 @@ export default function ProfilEditor({ user }) {
 
     const sheetsData = useSelector(state => state.sheetsReducer);
 
+    const errorType = document.getElementById('errorType');
+    const errorSize = document.getElementById('errorSize');
+
+
     const saveHandle = (e) => {
         
         if (isEmpty(displayName)) {
@@ -32,10 +36,10 @@ export default function ProfilEditor({ user }) {
                 }
             }).then((res) => {
                 if (file) {
-                   handlePic()
+                    handlePic()
                 }
                 setEditing(false);
-                return
+                return;     
             }).catch((err) => console.log(err)); 
         }
 
@@ -56,7 +60,11 @@ export default function ProfilEditor({ user }) {
             url: `${process.env.REACT_APP_API_URL}/api/user/uplaod/picture`,
             data: data
         }).then((res) => {
-
+            console.log(res.data);
+            if (res.data.errors) {
+                errorType.innerHTML = res.data.errors.type
+                errorSize.innerHTML = res.data.errors.size
+            }
         }).catch((err) => console.log(err));
     }
 
@@ -78,6 +86,8 @@ export default function ProfilEditor({ user }) {
                     <div className="head">
                         <img src={user.userPic} alt="PP"/>
                         <input type="file" name="userpic" id="userpic" accept='.jpg, .jpeg, .png' onChange={(e) => setFile(e.target.files[0])} />
+                        <p id="errorType" className='errors'></p>
+                        <p id="errorSize" className='errors'></p>
                         <input type="text" name="username" id="username" defaultValue={displayName} onChange={(e) => setDisplayName(e.target.value)}/>
                     </div>
                 ) : (
