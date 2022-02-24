@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import SquareNav from './SquareNav/SquareNav';
 import CurrentUsers from './CurrentUsers/CurrentUsers';
+import Report from './Report';
 
 export default function Editor({ sheet }) {
 

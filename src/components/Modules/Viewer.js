@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
 import { useSelector } from 'react-redux';
 import CurrentUsers from './CurrentUsers/CurrentUsers';
+import Report from './Report';
 
 export default function Viewer({ sheet }) {
 
@@ -59,6 +60,7 @@ export default function Viewer({ sheet }) {
         <div className='viewer'>
 
             <div className="save">
+                <Report type="sheet" reported={sheet} />
                 <div className="boxes">
                     <CurrentUsers currentUsers={currentUsers} />    
                 </div>

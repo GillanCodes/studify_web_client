@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import ReactTooltip from 'react-tooltip';
+import Report from '../Report';
 import DeleteSheet from './DeleteSheet';
 import TagEdit from './TagEdit';
 import TeamMemberAdd from './TeamMemberAdd';
@@ -34,7 +35,7 @@ export default function SquareNav({sheet , permission}) {
             {permission ? (<span className="one" data-tip="Ajouter un member" onClick={() => setPopUp({title: "Ajout d'un membre", e:"teamAdd", active: true})}><i className="fa-solid fa-user-plus"></i></span>) : (<span className="one"></span>)}
             <span className='two' data-tip="Voir les members" onClick={() => setPopUp({title: "Membres", e:"teamView", active: true})}><i className="fa-solid fa-users"></i></span>
             <span className='three' onClick={() => setPopUp({title: "Edition du Titre", e:"title", active: true})} data-tip="Changer le Titre"><i className="fa-solid fa-heading"></i></span>
-            <span className='four'><i className="fa-solid fa-minus"></i></span>
+            <span className='four' onClick={() => setPopUp({e: "report", active: true, title: `Signalement - ${sheet.title}`})}><i className="fa-solid fa-flag"></i></span>
             {permission ? (<span className='five' onClick={() => setPopUp({title: "Supprimer la fiche", e:"delete", active: true})} data-tip="Supprimer la Fiche"><i className="fa-solid fa-ban"></i></span>) : (<span className='five'></span>)}
             <span className='six' onClick={() => setPopUp({title: "Edition du Tag", e:"tag", active: true})} data-tip="Changer l'étiquette"><i className="fa-solid fa-tag"></i></span>
             {permission ? (<span className='seven' data-tip="Supprimer un membre" onClick={() => setPopUp({title: "Suppression d'un membre", e:"teamRmv", active: true})}><i className="fa-solid fa-user-minus"></i></span>) : (<span className='seven'></span>)}
@@ -57,6 +58,8 @@ export default function SquareNav({sheet , permission}) {
       </div>
 
 
+      
+
       {popUp.active && (
         <div className='popup'>
             <div className="head">
@@ -70,6 +73,7 @@ export default function SquareNav({sheet , permission}) {
               {popUp.e === 'teamRmv' && (<TeamMemberRemove sheet={sheet} />)}
               {popUp.e === 'teamView' && (<TeamMemberView sheet={sheet} />)}
               {popUp.e === 'delete' && (<DeleteSheet sheet={sheet} />)}
+              {popUp.e === 'report' && (<Report reported={sheet} type="sheet" squareNav/>)}
             </div>
         </div>
       )}

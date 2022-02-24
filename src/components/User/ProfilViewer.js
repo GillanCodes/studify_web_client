@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import File from '../Home/HomeScreen/File';
 import { isEmpty } from '../Utils';
 import Loading from '../Modules/Loading';
+import Report from '../Modules/Report';
 
 
 export default function ProfilViewer({ user }) {
@@ -20,11 +21,13 @@ export default function ProfilViewer({ user }) {
     return (
         <div className='profil-container'>
             
+            
             <div className="profil-content profil">
 
                 <div className="head">
                     <img src={user.userPic} alt="PP"/>
-                    <h1 className='username'>{user.displayName ? user.displayName : user.username }</h1>
+                    <h1 className='username'>{user.displayName ? user.displayName : user.username }</h1> 
+                    <Report reported={user} type="user" />
                 </div>
 
             </div>
