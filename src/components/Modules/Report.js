@@ -8,23 +8,26 @@ export default function Report({ reported, type, squareNav }) {
     const userData = useSelector(state => state.userReducer);
 
     const [active, setActive] = useState(squareNav ? true : false);
+    const [isReported, setIsReported] = useState(false);
 
     const reportHandle = (reason) => {
-        const data = {
-            reporter : userData._id,
-            reported : reported._id,
-            reason : reason,
-            rType : type
+        if (!isReported){
+            const data = {
+                reporter : userData._id,
+                reported : reported._id,
+                reason : reason,
+                rType : type
+            }
+    
+            return axios({
+                method: 'post',
+                url: `${process.env.REACT_APP_API_URL}/api/report/`,
+                withCredentials: true,
+                data
+            }).then((res) => {
+                setIsReported(true);
+            }).catch((err) => console.log(err));
         }
-
-        return axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_API_URL}/api/report/`,
-            withCredentials: true,
-            data
-        }).then((res) => {
-            console.log(res);
-        }).catch((err) => console.log(err));
     }
 
   return (
@@ -42,43 +45,47 @@ export default function Report({ reported, type, squareNav }) {
                     <i className="fa-solid fa-circle-xmark" onMouseOver={(e) => e.target.className = e.target.className + " fa-shake"} onMouseLeave={(e) => e.target.className = "fa-solid fa-circle-xmark"} onClick={() => setActive(!active)}></i>
                 </div>
                 <div className="body">
-                    <h3>Raisons</h3>
-                    {type === "user" && (
-                        <div className="fields user">
-                            <p onClick={() => reportHandle("offensive_username")}> Nom d'utilisateur offensant</p>   
-                            <p onClick={() => reportHandle("offensive_picture")}>Image de profile inappropriée / offensante</p>
-                        </div>
-                    )}
+                    <div className="reportPop">
+                        <h3 className='title'>Raisons</h3>
+                        {type === "user" && (
+                            <div className="fields user">
+                                <p className="reason" onClick={() => reportHandle("offensive_username")}> Nom d'utilisateur offensant</p>   
+                                <p className="reason" onClick={() => reportHandle("offensive_picture")}>Image de profile inappropriée / offensante</p>
+                            </div>
+                        )}
 
-                    {type === "sheet" && (
-                        <div className="fields user">
-                            <p onClick={() => reportHandle("offensive_content")}>Contenu Offensant/innaproprié</p>  
-                            <p onClick={() => reportHandle("offensive_title")}>Titre inapproprié</p>   
-                            <p onClick={() => reportHandle("offensive_tag")}>Tag inapproprié</p>   
-                        </div>
-                    )}
+                        {type === "sheet" && (
+                            <div className="fields user">
+                                <p className="reason" onClick={() => reportHandle("offensive_content")}>Contenu Offensant/innaproprié</p>  
+                                <p className="reason" onClick={() => reportHandle("offensive_title")}>Titre inapproprié</p>   
+                                <p className="reason" onClick={() => reportHandle("offensive_tag")}>Tag inapproprié</p>   
+                            </div>
+                        )}
+                        {isReported && (<p className='success'>Signalement envoyer avec success !</p>)}
+                    </div>
                 </div>
             </div>
         )}
 
         {squareNav && (
-            <>
-                <h3>Raisons</h3>
+            <div className='reportPop'>
+                <h3 className='title'>Raisons</h3>
                 {type === "user" && (
                     <div className="fields user">
-                        <p onClick={() => reportHandle("offensive_username")}> Nom d'utilisateur offensant</p>   
-                        <p onClick={() => reportHandle("offensive_picture")}>Image de profile inappropriée / offensante</p>
+                        <p className="reason" onClick={() => reportHandle("offensive_username")}> Nom d'utilisateur offensant</p>   
+                        <p className="reason" onClick={() => reportHandle("offensive_picture")}>Image de profile inappropriée / offensante</p>
                     </div>
                 )}
 
                 {type === "sheet" && (
-                    <div className="fields user">
-                        <p onClick={() => reportHandle("offensive_content")}>Contenu Offensant/innaproprié</p>  
-                        <p onClick={() => reportHandle("offensive_title")}>Titre inapproprié</p>   
-                        <p onClick={() => reportHandle("offensive_tag")}>Tag inapproprié</p>   
+                    <div className="fields sheet">
+                        <p className="reason" onClick={() => reportHandle("offensive_content")}>Contenu Offensant/innaproprié</p>  
+                        <p className="reason" onClick={() => reportHandle("offensive_title")}>Titre inapproprié</p>   
+                        <p className="reason" onClick={() => reportHandle("offensive_tag")}>Tag inapproprié</p>   
                     </div>
                 )}
-            </>
+                {isReported && (<p className='sucess'>Signalement envoyer avec success !</p>)}
+            </div>
             
         )}
 

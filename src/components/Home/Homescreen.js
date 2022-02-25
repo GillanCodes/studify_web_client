@@ -10,6 +10,10 @@ export default function Homescreen() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [updated, setUpdated] = useState(false);
+    
+    const [searchType, setSearchType] = useState('tag');
+    const [search, setSearch] = useState('');
+
 
     const sheetsData = useSelector(state => state.sheetsReducer);
     const userData = useSelector(state => state.userReducer);
@@ -50,32 +54,62 @@ export default function Homescreen() {
     return (
 
         <div className='homescreen-container'>
-                    
-                    <div className="homescreen-content">
-
-                    <div className="file" onClick={newSheetHandle}>
-                        <div className="file-head">
-                            <p><i className="fas fa-file-download"></i></p>
-                        </div>
-                        <div className="file-footer">
-                            <h1 className='sheet-title'>Créer une Fiche</h1>
-                        </div>
+            <div className="search">
+                <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />
+                <select onClick={(e) => setSearchType(e.target.value)}>
+                    <option value="tag">Tag</option>
+                    <option value="title">Titre</option>
+                </select>
+            </div>
+            <div className="homescreen-content">
+                <div className="file" onClick={newSheetHandle}>
+                    <div className="file-head">
+                        <p><i className="fas fa-file-download"></i></p>
                     </div>
-
-                    {isLoading ? (
-                        <Loading />
-                    ) : (
-                        // TODO : Classer les fiches auteurs et les fiches de team
-                        <>
-                            {sheetsData.map((sheet) => {
-                                if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
-                                    return <File sheet={sheet} key={sheet._id}/>
-                                } 
-                                return null
-                            })}
-                        </>
-                    )}
+                    <div className="file-footer">
+                        <h1 className='sheet-title'>Créer une Fiche</h1>
                     </div>
                 </div>
+
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    // TODO : Classer les fiches auteurs et les fiches de team
+                    <>
+                        {search.length >= 2 ? (
+                            <>
+                                {sheetsData.map((sheet) => {
+                                    if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
+                                        if(searchType === "tag"){
+                                            if (!isEmpty(sheet.tag) && !isEmpty(sheet.tag.text)){
+                                                if (sheet.tag.text.toLowerCase().includes(search.toLocaleLowerCase())) {
+                                                    return <File sheet={sheet} key={sheet._id}/>
+                                                }
+                                                return null
+                                            }
+                                            return null
+                                        }
+                                        if(searchType === "title" && sheet.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                                            return <File sheet={sheet} key={sheet._id}/>
+                                        }
+                                        return null
+                                    } 
+                                    return null
+                                })}
+                            </>
+                        ): (
+                            <>
+                                {sheetsData.map((sheet) => {
+                                    if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
+                                        return <File sheet={sheet} key={sheet._id}/>
+                                    } 
+                                    return null
+                                })}
+                            </>
+                        )}   
+                    </>
+                )}
+                </div>
+            </div>
     );
 }
