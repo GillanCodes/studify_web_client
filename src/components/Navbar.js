@@ -62,6 +62,9 @@ export default function Navbar() {
 						<div className='nav-item notification'>
 							<Notification />
 						</div>
+						{userData.permissions.DASHBOARD && (
+							<a href={process.env.REACT_APP_DASHBOARD_URL} target="_blank" className="nav-item"><i className="fa-solid fa-chart-line"></i></a>
+						)}
 						<NavLink exact="true" to={"/" + userData.username} className={"nav-item"}>
 							{userData.displayName ? userData.displayName : userData.username}
 						</NavLink>
