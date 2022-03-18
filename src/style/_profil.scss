@@ -28,11 +28,17 @@
                 width: 180px;
                 object-fit: cover;
                 border-radius: 20px;
+
+                
             }
 
             h1 {
                 text-align: center;
-                font-size: 25px;     
+                font-size: 25px;   
+                
+                .icon {
+                    font-size: 18px;
+                }  
             }
 
             input[type="file"] {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-export default function Register() {
+export default function Register({ intro }) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -66,15 +66,22 @@ export default function Register() {
   return (
       <div className="register-container">
           
-            <div className="content">
-                <h1 className='title'>S'enregistrer</h1>
-            </div>
+            {intro && (
+                <div className="content">
+                    <h1 className='title'>S'enregistrer</h1>
+                </div>
+            )}
 
-            {formSubmit && (
+            {formSubmit && !intro && (
                 <div className="notification is-success">
                     Engistrement terminé, <strong>vous pouvez vous connecter</strong> !
                 </div>
-                
+            )}
+
+            {formSubmit && intro && (
+                <div className="notification is-success">
+                    Engistrement terminé, <strong><a href="/auth">vous pouvez vous connecter</a></strong> !
+                </div>
             )}
 
             <form method="post" onSubmit={registerHandle}>

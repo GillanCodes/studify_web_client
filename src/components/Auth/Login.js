@@ -25,6 +25,7 @@ export default function Login() {
                 const Error = document.querySelector('.log-error');
                 if (res.data.errors.username) return Error.innerHTML = res.data.errors.username;
                 if (res.data.errors.password) return Error.innerHTML = res.data.errors.password;
+                if (res.data.errors.ban) return Error.innerHTML = res.data.errors.ban;
             } else {
                 window.location = '/';
             }
