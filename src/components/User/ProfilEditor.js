@@ -94,7 +94,8 @@ export default function ProfilEditor({ user }) {
                 ) : (
                     <div className="head">
                         <img src={user.userPic} alt="PP"/>
-                        <h1 className='username'>{displayName} {user.certified && (<i className="fa-solid fa-circle-check icon" data-tip="Certifié"></i>)} {user.permissions.DASHBOARD && (<i className="fa-solid fa-desktop icon" data-tip="Staff"></i>)}</h1>
+                        <h1 className='username'>{displayName}</h1>
+                        <p className="icons">{user.certified && (<i className="fa-solid fa-circle-check icon" data-tip="Certifié"></i>)} {user.permissions.DASHBOARD && (<i className="fa-solid fa-desktop icon" data-tip="Staff"></i>)}</p>
                         <ReactTooltip effect='solid' />
                     </div>
                 )}

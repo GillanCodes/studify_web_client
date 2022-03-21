@@ -29,7 +29,8 @@ export default function ProfilViewer({ user }) {
 
                         <div className="head">
                             <img src={user.userPic} alt="PP"/>
-                            <h1 className='username'>{user.displayName ? user.displayName : user.username } {user.certified && (<i className="fa-solid fa-circle-check icon" data-tip="Certifié"></i>) } {user.permissions.DASHBOARD && (<i className="fa-solid fa-desktop icon" data-tip="Staff"></i>)}</h1> 
+                            <h1 className='username'>{user.displayName ? user.displayName : user.username }</h1>
+                            <p className="icons">{user.certified && (<i className="fa-solid fa-circle-check icon" data-tip="Certifié"></i>)} {user.permissions.DASHBOARD && (<i className="fa-solid fa-desktop icon" data-tip="Staff"></i>)}</p> 
                             <Report reported={user} type="user" />
                             <ReactTooltip effect='solid' />
                         </div>

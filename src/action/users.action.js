@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GET_USERS = "GET_USERS";
 
-export const getUsers = (Uid) => {
+export const getUsers = () => {
     return(dispatch) => {
         return axios({
             method: 'get',

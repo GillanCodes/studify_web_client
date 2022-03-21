@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
+import ImageResize from 'quill-image-resize';
+import ImageCompress from 'quill-image-compress';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { isEmpty } from '../Utils';
@@ -8,13 +10,14 @@ import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import SquareNav from './SquareNav/SquareNav';
 import CurrentUsers from './CurrentUsers/CurrentUsers';
-import Report from './Report';
 
 export default function Editor({ sheet }) {
 
     const userData = useSelector(state => state.userReducer);
-
     const quillRef = useRef();
+
+    ReactQuill.Quill.register('modules/imageCompress', ImageCompress);
+    ReactQuill.Quill.register('modules/ImageResize', ImageResize);
 
     const TOOLBAR_OPTIONS = {toolbar: [
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -24,20 +27,26 @@ export default function Editor({ sheet }) {
         [{ color: [] }, { background: [] }],
         [{ script: "sub" }, { script: "super" }],
         [{ align: [] }],
-        ["blockquote", "code-block"],
-    ]}
+        ["blockquote", "code-block", 'image'],
+    ] ,
+    ImageResize : {
+        modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+    },
+    imageCompress: {
+        quality: 0.5,
+        maxWidth: 1000,
+        maxHeight: 1000,
+        imageType: 'image/jpeg',
+        debug: false,
+        suppressErrorLogging: false,
+    }
+}
 
-    const [tag_text, setTag_text] = useState("");
-    const [tag_bg_color, setTag_bg_color] = useState("");
-    const [tag_text_color, setTag_text_color] = useState("");
-    
-    
-    const [title, setTitle] = useState(sheet.title);
+
 
     const [text, setText] = useState(sheet.sheet_body);
     const [oldText, setOldText] = useState(sheet.sheet_body);
     const [save, setSave] = useState(true);
-    const [toolbar, setToolbar] = useState(false);
 
     const [currentUsers, setCurrentUsers] = useState();
     const [socket, setSocket] = useState()
@@ -51,13 +60,7 @@ export default function Editor({ sheet }) {
         }
     }, [])
 
-    useEffect(() => {
-        if (!isEmpty(sheet.tag)) {
-            setTag_text(sheet.tag.text);
-            setTag_bg_color(sheet.tag.background_color);
-            setTag_text_color(sheet.tag.text_color);
-        }
-    }, [sheet])
+
 
 
     const changeHandle = (content, delta, source, editor) => {

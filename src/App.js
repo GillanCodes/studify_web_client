@@ -1,18 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Routes from './components/Routes';
 import {getUser} from './action/user.action';
 import { UIdContext } from './components/App.context';
+import { io } from 'socket.io-client';
 
 import './style/index.scss';
 import { getNotifications } from './action/notification.action';
-
+import { isEmpty } from './components/Utils';
 
 function App() {
 
   const [UId, setUId] = useState(null);
   const disptach = useDispatch();
+
+  const [socket, setSocket] = useState();
+
+ const userData = useSelector(state => state.userReducer);
 
   useEffect(() => {
     const fetchToken = async() => {
@@ -30,9 +35,25 @@ function App() {
 
     if (UId) {
       disptach(getUser(UId));
-      disptach(getNotifications());  
+      disptach(getNotifications()); 
     } 
   }, [UId, disptach]);
+
+  useEffect(() => {
+    const s = io(`${process.env.REACT_APP_API_URL}`);
+    setSocket(s);
+
+    return () => {
+        s.disconnect();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isEmpty(socket) && (!isEmpty(userData))) {
+        socket.emit('new-global-user', userData);
+    }
+    return 
+  }, [socket, userData])
 
 
   return (
