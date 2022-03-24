@@ -41,6 +41,7 @@ export default function SquareNav({sheet , permission}) {
             {permission ? (<span className='seven' data-tip="Supprimer un membre" onClick={() => setPopUp({title: "Suppression d'un membre", e:"teamRmv", active: true})}><i className="fa-solid fa-user-minus"></i></span>) : (<span className='seven'></span>)}
             <span className='eight' onClick={() => setActive(false)} data-tip="Fermer le menu"><i className="fa-solid fa-minus"></i></span>
             <span className='nine' onClick={publicHandle}>{isPublic ? (<i className="fa-solid fa-eye-low-vision" data-tip='Rendre Public'></i>) :(<i className="fa-solid fa-eye" data-tip='Rendre Privé'></i>) }</span>
+            <ReactTooltip effect='solid' place='top' />
           </>
         ) : (
           <>
