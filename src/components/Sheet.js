@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { UIdContext } from './App.context';
+import NotFound from './errors/NotFound';
 import Editor from './Modules/Editor';
 import Loading from './Modules/Loading';
 import Viewer from './Modules/Viewer';
@@ -34,7 +35,11 @@ export default function Sheet() {
                             if (sheet.author === uid || sheet.team.includes(uid)) {
                                 return <Editor sheet={sheet} key={sheet._id} />
                             } else {
-                                return <Viewer sheet={sheet} key={sheet._id} />
+                                if (sheet.isPublic) {
+                                    return <Viewer sheet={sheet} key={sheet._id} />
+                                } else {
+                                    return <NotFound customMessage={"Cette fiche est Privée ou n'existe pas :("} />
+                                }
                             }
                             
                         }
