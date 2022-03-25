@@ -41,17 +41,17 @@ export default function EditorNavBar() {
 		<div className="navbar-container">
 			<div className="navbar-content">
 				<div className="nav-item"></div>
-				<NavLink exact="true" to="/" className={"nav-item"}>
+				<NavLink exact="true"="true" to="/" className={"nav-item"}>
 					<i className="fas fa-home"></i>
 				</NavLink>
 				<div className="nav-item"></div>
-				<NavLink exact="true" to="/sheets" className={"nav-item"}>
+				<NavLink exact="true"="true" to="/sheets" className={"nav-item"}>
 					<i className="fas fa-file-alt"></i> Fiches Publics
 				</NavLink>
-				<NavLink exact="true" to="/about" className={"nav-item"}>
+				<NavLink exact="true"="true" to="/about" className={"nav-item"}>
 				 	<i className="fas fa-address-card"></i> A Propos
 				</NavLink>
-				<NavLink exact="true" to="/partners" className={"nav-item"}>
+				<NavLink exact="true"="true" to="/partners" className={"nav-item"}>
 					<i className="fas fa-handshake"></i> Nos Partenaires
 				</NavLink>
 				
@@ -62,7 +62,7 @@ export default function EditorNavBar() {
 						<div className='nav-item notification'>
 							<Notification />
 						</div>
-						<NavLink exact="true" to={"/" + userData.username} className={"nav-item"}>
+						<NavLink exact="true"="true" to={"/" + userData.username} className={"nav-item"}>
 							{userData.displayName ? userData.displayName : userData.username}
 						</NavLink>
 						<div className="nav-item" onClick={logoutHandle}>
@@ -72,7 +72,7 @@ export default function EditorNavBar() {
 					</>	
 				
 				) : (
-				<NavLink exact="true" to="/auth" className={"nav-item"}>
+				<NavLink exact="true"="true" to="/auth" className={"nav-item"}>
 					Login
 				</NavLink>
 				)}
