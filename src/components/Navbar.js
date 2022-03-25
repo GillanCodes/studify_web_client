@@ -54,6 +54,9 @@ export default function Navbar() {
 				<NavLink exact="true" to="/partners" className={"nav-item"}>
 					<i className="fas fa-handshake"></i> Nos Partenaires
 				</NavLink>
+				<p className="nav-item">
+					Version du 25 Mars 2022
+				</p>
 				
 			</div>
 			<div className="navbar-content">
