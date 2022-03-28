@@ -5,6 +5,8 @@ import Loading from '../Modules/Loading';
 import { isEmpty } from '../Utils';
 import File from './HomeScreen/File';
 import { getSheets } from '../../action/sheets.action';
+import { getQuizz } from '../../action/quizz.action';
+import Quizz from './HomeScreen/Quizz';
 
 export default function Homescreen() {
 
@@ -16,12 +18,13 @@ export default function Homescreen() {
 
 
     const sheetsData = useSelector(state => state.sheetsReducer);
+    const quizzData = useSelector(state => state.quizzReducer);
     const userData = useSelector(state => state.userReducer);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      if (!isEmpty(sheetsData) && !isEmpty(userData)) {
+      if (!isEmpty(sheetsData) && !isEmpty(userData) && !isEmpty(quizzData)) {
           setIsLoading(false);
       }
     }, [isLoading, sheetsData, userData]);
@@ -42,9 +45,22 @@ export default function Homescreen() {
         })
     }
 
+    const newQuizzHandle = () => {
+        axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_API_URL}/api/quizz/new`,
+            withCredentials: true,
+        }).then((res) => {
+            window.location = `/quizz/${res.data._id}`
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
     useEffect(() => {
         if (!updated) {
             dispatch(getSheets())
+            dispatch(getQuizz())
             setUpdated(true)
         }
     }, [updated])
@@ -68,6 +84,15 @@ export default function Homescreen() {
                     </div>
                     <div className="file-footer">
                         <h1 className='sheet-title'>Créer une Fiche</h1>
+                    </div>
+                </div>
+
+                <div className="file" onClick={newQuizzHandle}>
+                    <div className="file-head">
+                        <p><i className="fas fa-file-download"></i></p>
+                    </div>
+                    <div className="file-footer">
+                        <h1 className='sheet-title'>Créer un Quizz</h1>
                     </div>
                 </div>
 
@@ -102,6 +127,13 @@ export default function Homescreen() {
                                 {sheetsData.map((sheet) => {
                                     if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
                                         return <File sheet={sheet} key={sheet._id}/>
+                                    } 
+                                    return null
+                                })}
+
+                                {quizzData.map((quizz) => {
+                                    if (quizz.author === userData._id || quizz.team.includes(userData._id)) {
+                                        return <Quizz quizz={quizz} />
                                     } 
                                     return null
                                 })}

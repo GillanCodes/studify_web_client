@@ -2,37 +2,37 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import File from './Home/HomeScreen/File';
-import Loading from './Modules/Loading';
-import { isEmpty } from './Utils';
+import File from '../Home/HomeScreen/File';
+import Loading from '../Modules/Loading';
+import { isEmpty } from '../Utils';
 
-export default function SheetsThread() {
+export default function QuizzThread() {
 
     const [isLoading, setIsLoading] = useState(true);
 
     const [searchType, setSearchType] = useState('tag');
     const [search, setSearch] = useState('');
 
-    const sheetsData = useSelector(state => state.sheetsReducer)
+    const quizzData = useSelector(state => state.quizzReducer)
 
     useEffect(() => {
 
-        if (!isEmpty(sheetsData)) {
+        if (!isEmpty(quizzData)) {
             setIsLoading(false)
         }
 
-    }, [sheetsData])
+    }, [quizzData])
 
 
   return (
-        <div className="sheets-thread-content">
+        <div className="quizzs-thread-content">
             {isLoading ? (
                 <Loading />
             ) : (
 
                 
             
-                <div className="sheets-thread">
+                <div className="quizzs-thread">
                     
                     <div className="search">
                         <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />
@@ -44,19 +44,19 @@ export default function SheetsThread() {
 
                     {search.length >= 2 ? (
                         <>
-                            {sheetsData.map((sheet) => {
-                                if (sheet.isPublic) {
+                            {quizzData.map((quizz) => {
+                                if (quizz.isPublic) {
                                     if(searchType === "tag"){
-                                        if (!isEmpty(sheet.tag) && !isEmpty(sheet.tag.text)){
-                                            if (sheet.tag.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
-                                                return <File sheet={sheet} key={sheet._id}/>
+                                        if (!isEmpty(quizz.tag) && !isEmpty(quizz.tag.text)){
+                                            if (quizz.tag.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
+                                                return <File quizz={quizz} key={quizz._id}/>
                                             }
                                             return null
                                         }
                                         return null
                                     }
-                                    if(searchType === "title" && sheet.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-                                        return <File sheet={sheet} key={sheet._id}/>
+                                    if(searchType === "title" && quizz.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                                        return <File quizz={quizz} key={quizz._id}/>
                                     }
                                     return null
                                 } 
@@ -65,9 +65,9 @@ export default function SheetsThread() {
                         </>
                     ) : (
                         <>
-                            {sheetsData.map((sheet) => {
-                                if (sheet.isPublic) {
-                                    return (<File sheet={sheet} author />)
+                            {quizzData.map((quizz) => {
+                                if (quizz.isPublic) {
+                                    return (<File quizz={quizz} author />)
                                 }
                                 return null
                             })}

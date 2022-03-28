@@ -45,8 +45,8 @@ export default function Navbar() {
 					<i className="fas fa-home"></i>
 				</NavLink>
 				<div className="nav-item"></div>
-				<NavLink exact="true" to="/sheets" className={"nav-item"}>
-					<i className="fas fa-file-alt"></i> Fiches Publics
+				<NavLink exact="true" to="/library" className={"nav-item"}>
+					<i className="fa-solid fa-book"></i> La bibliotheque 
 				</NavLink>
 				<NavLink exact="true" to="/about" className={"nav-item"}>
 				 	<i className="fas fa-address-card"></i> A Propos

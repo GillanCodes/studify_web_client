@@ -11,12 +11,14 @@ import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
 import { getSheets } from './action/sheets.action';
 import { getUsers } from './action/users.action';
+import { getQuizz } from './action/quizz.action';
 
 const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
 store.dispatch(getSheets());
+store.dispatch(getQuizz());
 store.dispatch(getUsers());
 
 ReactDOM.render(
