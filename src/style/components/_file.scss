@@ -41,12 +41,14 @@
 
         .tag {
             padding: 2px;
-            margin: 15px;
+            margin-left: 15px;
             border-radius: 5px;
             font-size: 15px;
             width: 50px;
             overflow: hidden;
+            text-overflow: ellipsis;
             text-align: center;
+            white-space: nowrap;
             // background-color: $tag-color;
 
         }

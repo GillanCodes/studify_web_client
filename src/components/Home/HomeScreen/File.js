@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { isEmpty } from '../../Utils';
 
 export default function File({ sheet, author }) {
@@ -12,13 +13,17 @@ export default function File({ sheet, author }) {
                 {sheet.tag && (
                     <>
                         {!isEmpty(sheet.tag.text) && (
-                            <p className='tag' 
-                            style={
-                                {backgroundColor: sheet.tag.background_color, 
-                                    color: sheet.tag.text_color}
-                                }>
-                                {sheet.tag.text}
-                            </p>
+                            <>
+                                <p className='tag'
+                                data-tip={sheet.tag.text}
+                                style={
+                                    {backgroundColor: sheet.tag.background_color, 
+                                        color: sheet.tag.text_color}
+                                    }>
+                                    {sheet.tag.text}
+                                </p>
+                                <ReactTooltip effect='solid' place='top' />
+                            </>
                         )}
                     </>
                     
