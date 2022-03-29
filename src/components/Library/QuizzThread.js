@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import File from '../Home/HomeScreen/File';
+import Quizz from '../Home/HomeScreen/Quizz';
 import Loading from '../Modules/Loading';
 import { isEmpty } from '../Utils';
 
@@ -29,9 +29,6 @@ export default function QuizzThread() {
             {isLoading ? (
                 <Loading />
             ) : (
-
-                
-            
                 <div className="quizzs-thread">
                     
                     <div className="search">
@@ -42,39 +39,12 @@ export default function QuizzThread() {
                         </select>
                     </div>
 
-                    {search.length >= 2 ? (
-                        <>
-                            {quizzData.map((quizz) => {
-                                if (quizz.isPublic) {
-                                    if(searchType === "tag"){
-                                        if (!isEmpty(quizz.tag) && !isEmpty(quizz.tag.text)){
-                                            if (quizz.tag.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
-                                                return <File quizz={quizz} key={quizz._id}/>
-                                            }
-                                            return null
-                                        }
-                                        return null
-                                    }
-                                    if(searchType === "title" && quizz.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-                                        return <File quizz={quizz} key={quizz._id}/>
-                                    }
-                                    return null
-                                } 
-                                return null
-                            })}
-                        </>
-                    ) : (
-                        <>
-                            {quizzData.map((quizz) => {
-                                if (quizz.isPublic) {
-                                    return (<File quizz={quizz} author />)
-                                }
-                                return null
-                            })}
-                        </>
-                    )}
-
-                    
+                        {quizzData.map((quizz) => {
+                            if (quizz.isPublic) {
+                                return (<Quizz quizz={quizz} author />)
+                            }
+                            return null
+                        })}
 
                 </div>
             )}

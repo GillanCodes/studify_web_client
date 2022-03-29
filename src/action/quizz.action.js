@@ -22,7 +22,7 @@ export const getQuizz = () => {
     }
 }
 
-export const editQuizz = (quizz_id, title, level) => {
+export const editQuizz = (quizz_id, title, level, isPublic) => {
     return(dispatch) => {
         return axios({
             method:"put",
@@ -30,7 +30,8 @@ export const editQuizz = (quizz_id, title, level) => {
             url: `${process.env.REACT_APP_API_URL}/api/quizz/${quizz_id}`,
             data: {
                 title,
-                level
+                level,
+                isPublic
             }, 
         }).then((res) => {
             dispatch({type: EDIT_QUIZZ, payload: res.data});

@@ -1,9 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { addQuestion, editQuestion, editQuizz, removeQuestion } from '../../action/quizz.action';
 import { isEmpty } from '../Utils';
+import { Switch, FormControlLabel } from '@mui/material';
 
 export default function QuizzEditor({ quizz }) {
 
@@ -12,6 +11,7 @@ export default function QuizzEditor({ quizz }) {
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [edit, setEdit] = useState();
+    const [isPublic, setIsPublic] = useState();
 
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ export default function QuizzEditor({ quizz }) {
     }
 
     const save = () => {
-            dispatch(editQuizz(quizz._id, title, level))
+            dispatch(editQuizz(quizz._id, title, level, isPublic))
     }
 
     const addQuestionHandle = () => {
@@ -43,6 +43,7 @@ export default function QuizzEditor({ quizz }) {
       if (!isEmpty(quizz)) {
         setTitle(quizz.title)
         setLevel(quizz.level)
+        setIsPublic(quizz.isPublic)
       }
     }, [quizz]);
     
@@ -58,6 +59,7 @@ export default function QuizzEditor({ quizz }) {
                 <div className="info">
                     <span>Titre <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} /></span>
                     <span>Niveau <input type="text" name="title" id="title" value={level} onChange={(e) => setLevel(e.target.value)} /></span> 
+                    <FormControlLabel control={<Switch checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />} label={"Public"} />
                 </div>
                 <div className="buttons">
                     <button onClick={save} className="button add">Sauvegarder</button>
