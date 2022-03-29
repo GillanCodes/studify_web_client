@@ -78,21 +78,26 @@ export default function Homescreen() {
                 </select>
             </div>
             <div className="homescreen-content">
-                <div className="file" onClick={newSheetHandle}>
-                    <div className="file-head">
-                        <p><i className="fas fa-file-download"></i></p>
-                    </div>
-                    <div className="file-footer">
-                        <h1 className='sheet-title'>Créer une Fiche</h1>
-                    </div>
-                </div>
+                <div className="news content">
+                    <h2 className='subtitle'>Tableau de bord</h2>
+                    <div className="box">
+                        <div className="file" onClick={newSheetHandle}>
+                            <div className="file-head">
+                                <p><i className="fas fa-file-download"></i></p>
+                            </div>
+                            <div className="file-footer">
+                                <h1 className='sheet-title'>Créer une Fiche</h1>
+                            </div>
+                        </div>
 
-                <div className="file" onClick={newQuizzHandle}>
-                    <div className="file-head">
-                        <p><i className="fas fa-file-download"></i></p>
-                    </div>
-                    <div className="file-footer">
-                        <h1 className='sheet-title'>Créer un Quizz</h1>
+                        <div className="file" onClick={newQuizzHandle}>
+                            <div className="file-head">
+                                <p><i className="fas fa-file-download"></i></p>
+                            </div>
+                            <div className="file-footer">
+                                <h1 className='sheet-title'>Créer un Quizz</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -124,19 +129,29 @@ export default function Homescreen() {
                             </>
                         ): (
                             <>
-                                {sheetsData.map((sheet) => {
-                                    if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
-                                        return <File sheet={sheet} key={sheet._id}/>
-                                    } 
-                                    return null
-                                })}
+                                <div className="sheets content">
+                                    <h2 className='subtitle'>Fiches</h2>
+                                    <div className="box">
+                                        {sheetsData.map((sheet) => {
+                                            if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
+                                                return <File sheet={sheet} key={sheet._id}/>
+                                            } 
+                                            return null
+                                        })}
+                                    </div>
+                                </div>
 
-                                {quizzData.map((quizz) => {
-                                    if (quizz.author === userData._id || quizz.team.includes(userData._id)) {
-                                        return <Quizz quizz={quizz} />
-                                    } 
-                                    return null
-                                })}
+                                <div className="quizz content">
+                                    <h2 className='subtitle'>Quizz</h2>
+                                    <div className="box">
+                                        {quizzData.map((quizz) => {
+                                            if (quizz.author === userData._id || quizz.team.includes(userData._id)) {
+                                                return <Quizz quizz={quizz} />
+                                            } 
+                                            return null
+                                        })}
+                                    </div>
+                                </div>
                             </>
                         )}   
                     </>

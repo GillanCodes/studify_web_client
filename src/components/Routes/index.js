@@ -10,6 +10,7 @@ import SheetsThread from '../Library/SheetsThread';
 import Profil from '../User/Profil';
 import QuizzThread from '../Library/QuizzThread';
 import Quizz from '../Quizz/Quizz';
+import QuizzResults from '../Quizz/Results/QuizzResults';
 
 export default function index() {
   return (
@@ -22,6 +23,7 @@ export default function index() {
             <Route path="/library" exact="true" element={<Library />} />
             <Route path="/sheets/" exact="true" element={<SheetsThread />} />
             <Route path="/quizz/" exact="true" element={<QuizzThread />} />
+            <Route path="/quizz/results" exact="true" element={<QuizzResults />} />
             <Route path="/quizz/:id" exact="true" element={<Quizz />} />
             <Route path="/sheet/:id" exact="true" element={<Sheet />} />
             <Route path="/:username" exact="true" element={<Profil />} />

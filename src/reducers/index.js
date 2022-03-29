@@ -4,11 +4,13 @@ import usersReducer from './users.reducer';
 import sheetsReducer from './sheets.reducer';
 import notificationReducer from './notification.reducer';
 import quizzReducer from './quizz.reducer';
+import quizzAnswersReducer from './quizzAnswers.reducer';
 
 export default combineReducers({
     userReducer,
     usersReducer,
     sheetsReducer,
     notificationReducer,
-    quizzReducer
+    quizzReducer,
+    quizzAnswersReducer
 })

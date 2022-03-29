@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addQuestion, editQuestion, removeQuestion } from '../../action/quizz.action';
+import { NavLink } from 'react-router-dom';
+import { addQuestion, editQuestion, editQuizz, removeQuestion } from '../../action/quizz.action';
 import { isEmpty } from '../Utils';
 
 export default function QuizzEditor({ quizz }) {
 
     const [title, setTitle] = useState();
+    const [level, setLevel] = useState();
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [edit, setEdit] = useState();
@@ -20,20 +22,12 @@ export default function QuizzEditor({ quizz }) {
     }
 
     const save = () => {
-
-        axios({
-            method:"put",
-            withCredentials: true,
-            url: `${process.env.REACT_APP_API_URL}/api/quizz/${quizz._id}`,
-            data: {
-                title
-            },
-            
-        })
+            dispatch(editQuizz(quizz._id, title, level))
     }
 
     const addQuestionHandle = () => {
         dispatch(addQuestion(quizz._id, question, answer))
+        
     }
 
     const removeQuestionHandle = (question_id) => {
@@ -48,22 +42,41 @@ export default function QuizzEditor({ quizz }) {
     useEffect(() => {
       if (!isEmpty(quizz)) {
         setTitle(quizz.title)
+        setLevel(quizz.level)
       }
     }, [quizz]);
     
 
   return (
     <div className="quizz-content">
-        <div className="field">
-            <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <button onClick={save}>save</button>
+
+        <div className="field questions">
+            <div className="info">
+                <h1>Info du Quizz</h1>
+            </div>
+            <div className="question">
+                <div className="info">
+                    <span>Titre <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} /></span>
+                    <span>Niveau <input type="text" name="title" id="title" value={level} onChange={(e) => setLevel(e.target.value)} /></span> 
+                </div>
+                <div className="buttons">
+                    <button onClick={save} className="button add">Sauvegarder</button>
+                </div>
+            </div>
         </div>
 
-        <div className="field">
-                <input placeholder='question' onChange={(e) => setQuestion(e.target.value)} />
-                <input placeholder='answer' onChange={(e) => setAnswer(e.target.value)} />
-                <button onClick={addQuestionHandle}>add</button>
+        <div className="field questions question-add">
+            <div className='question'>
+                <div className="text">
+                    <span>Question : <input type="text" onChange={(e) => setQuestion(e.target.value)} /></span>
+                    <span>Réponse : <input type="text" onChange={(e) => setAnswer(e.target.value)} /></span>
+                </div>
+                <div className="buttons">
+                    <button onClick={addQuestionHandle} className="add">Ajouter</button>
+                </div>
             </div>
+        </div>
+
 
         {!isEmpty(quizz.questions) && (
             <>
@@ -73,23 +86,23 @@ export default function QuizzEditor({ quizz }) {
                             {edit === question._id ? (
                                 <div className='question'>
                                 <div className="text">
-                                    <span>Question : </span><input type="text" defaultValue={question.question} onChange={(e) => setQuestion(e.target.value)} /> <br />
-                                    <span>Réponse : </span><input type="text" defaultValue={question.answer} onChange={(e) => setAnswer(e.target.value)} />
+                                    <span>Question : <input type="text" defaultValue={question.question} onChange={(e) => setQuestion(e.target.value)} /></span>
+                                    <span>Réponse : <input type="text" defaultValue={question.answer} onChange={(e) => setAnswer(e.target.value)} /></span>
                                 </div>
                                 <div className="buttons">
                                     <button className='delete' onClick={() => removeQuestionHandle(question._id)}>Supprimer</button> 
-                                    <p className='edit' onClick={() => saveQuestionHandle(question._id)}>Save</p>
+                                    <button className='edit' onClick={() => saveQuestionHandle(question._id)}>Sauvegarder</button>
                                 </div>
                             </div>
                             ) : (
                                 <div className='question'>
                                     <div className="text">
-                                        <p className="question-text">{question.question}</p>
-                                        <p className="answer">{question.answer}</p> 
+                                        <span>Question : <input type="text" disabled defaultValue={question.question} onChange={(e) => setQuestion(e.target.value)} /></span>
+                                        <span>Réponse : <input type="text" disabled defaultValue={question.answer} onChange={(e) => setAnswer(e.target.value)} /></span>
                                     </div>
                                     <div className="buttons">
                                         <button className='delete' onClick={() => removeQuestionHandle(question._id)}>Supprimer</button> 
-                                        <p className='edit' onClick={() => editHandle(question)}>Edit</p>
+                                        <button className='edit' onClick={() => editHandle(question)}>Modifier</button>
                                     </div>
                                 </div>
                             )}

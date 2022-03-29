@@ -11,7 +11,7 @@ import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
 import { getSheets } from './action/sheets.action';
 import { getUsers } from './action/users.action';
-import { getQuizz } from './action/quizz.action';
+import { getAnswers, getQuizz } from './action/quizz.action';
 
 const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
@@ -20,6 +20,8 @@ const store = createStore(
 store.dispatch(getSheets());
 store.dispatch(getQuizz());
 store.dispatch(getUsers());
+store.dispatch(getAnswers());
+
 
 ReactDOM.render(
     <Provider store={store}>

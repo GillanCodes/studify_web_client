@@ -10,21 +10,12 @@ export default function Quizz({ quizz, author }) {
                 <p><i className="fa-solid fa-file-circle-question"></i></p>
             </div>
             <div className="file-footer">
-                {quizz.tag && (
-                    <>
-                        {!isEmpty(quizz.tag.text) && (
-                            <>
-                                <p className='tag'
-                                data-tip={quizz.tag.text}
-                                style={
-                                    {backgroundColor: quizz.tag.background_color, 
-                                        color: quizz.tag.text_color}
-                                    }>
-                                    {quizz.tag.text}
-                                </p>
-                                <ReactTooltip effect='solid' place='top' />
-                            </>
-                        )}
+                {quizz.level && (
+                    <>                           
+                        <p className='tag level' data-tip={quizz.level}>
+                            {quizz.level}
+                        </p>
+                        <ReactTooltip effect='solid' place='top' />
                     </>
                     
                 )}
