@@ -2,12 +2,45 @@
 
     .homescreen-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
 
         justify-content: center;
+        align-items: center;
         
         padding: 25px;
+
+        .subtitle {
+            text-align: center;
+        }
+
+        .content{
+            margin-top: 25px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .news {
+            .file{
+                border-color: $border-color3;
+            }
+        }
+
+        .sheets {
+            .file{
+                border-color: $border-color2;
+            }
+        }
+
+        .quizz {
+            .file{
+                border-color: $border-color1;
+            }
+        }
     }
 
 }
