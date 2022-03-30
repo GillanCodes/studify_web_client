@@ -6,6 +6,8 @@ import Loading from '../Modules/Loading';
 import axios from 'axios';
 import ReactTooltip from 'react-tooltip';
 import Quizz from '../Home/HomeScreen/Quizz';
+import AvatarEditor from 'react-avatar-editor';
+import { Slider } from '@mui/material';
 
 
 export default function ProfilEditor({ user }) {
@@ -15,7 +17,6 @@ export default function ProfilEditor({ user }) {
 
     const [displayName, setDisplayName] = useState(user.displayName ? user.displayName : user.username);
     const [file, setFile] = useState();
-    const [src, setSrc] = useState(user.userPic);
 
     const sheetsData = useSelector(state => state.sheetsReducer);
     const quizzData = useSelector(state => state.quizzReducer);
@@ -23,12 +24,42 @@ export default function ProfilEditor({ user }) {
     const errorType = document.getElementById('errorType');
     const errorSize = document.getElementById('errorSize');
 
+    const [src, setSrc] = useState(user.userPic.imageUrl);
+    const [scale, setScale] = useState(user.userPic.scale);
+    const [pos, setPos] = useState({
+        x:user.userPic.x, 
+        y:user.userPic.y,
+        cX: user.userPic.cX,
+        cY: user.userPic.cY,
+    });
+
     const imgRef = useRef();
 
+    const changeHandle = (e) => {
+        
+        setPos({
+            x: imgRef.current.calculatePosition().x,
+            y: imgRef.current.calculatePosition().y,
+            cX: e.x,
+            cY: e.y,
+        });
+    }
 
-       const handleFile = (e) => {
+    const zoomHandle = (e) => {
+        
+        setPos({
+            x: imgRef.current.calculatePosition().x,
+            y: imgRef.current.calculatePosition().y,
+            cX: pos.cX,
+            cY: pos.cY,
+        });
+        setScale(e.target.value)
+    }
+
+    const handleFile = (e) => {
         setFile(e.target.files[0]);
         setSrc(URL.createObjectURL(e.target.files[0]));
+        console.log(file)
     }
 
     const saveHandle = (e) => {
@@ -47,21 +78,26 @@ export default function ProfilEditor({ user }) {
                 }
             }).then((res) => {
                 if (file) {
-                    handlePic()
+                    handlePic(pos, scale)
                 }
                 setEditing(false);
                 return;     
             }).catch((err) => console.log(err)); 
         }
 
-        handlePic();
+        handlePic(pos, scale);
     }
 
-    const handlePic = () => {
+    const handlePic = (pos) => {
         const data = new FormData();
         data.append('username', user.username);
         data.append('userId', user._id);
         data.append('file', file);
+        data.append('posX', pos.x);
+        data.append('posY', pos.y);
+        data.append('posCX', pos.cX);
+        data.append('posCY', pos.cY);
+        data.append('scale', scale);
 
         axios({
             method: 'POST',
@@ -75,13 +111,13 @@ export default function ProfilEditor({ user }) {
                 errorSize.innerHTML = res.data.errors.size
             }
         }).catch((err) => console.log(err));
-}
+    }
 
     useEffect(() => {
-        if (!isEmpty(sheetsData) && !isEmpty(quizzData)) {
+        if (!isEmpty(sheetsData)) {
             setIsLoading(false);
         }
-    }, [sheetsData, quizzData]);
+    }, [sheetsData]);
 
     return (
         <div className='profil-container'>
@@ -93,7 +129,9 @@ export default function ProfilEditor({ user }) {
                 </div>
                 {editing ? (
                     <div className="head">
-                        <img src={src} id="test" alt="PP"/>
+                        <AvatarEditor width={180} height={180} image={src} scale={scale} border={0} borderRadius={20} ref={imgRef} position={{x: pos.cX, y:pos.cY}} onPositionChange={(e) => changeHandle(e)}  />
+                        <Slider defaultValue={scale} step={1} min={1} max={10} onChange={(e) => zoomHandle(e)} />
+                        {/* <img src={src} id="test" alt="PP"/> */}
                         <input type="file" name="userpic" id="userpic" accept='.jpg, .jpeg, .png' onChange={(e) => handleFile(e)} />
                         <p id="errorType" className='errors'></p>
                         <p id="errorSize" className='errors'></p>
@@ -101,8 +139,16 @@ export default function ProfilEditor({ user }) {
                     </div>
                 ) : (
                     <div className="head">
-                        <img src={src} alt="PP"/>
-                        <h1 className='username'>{displayName}</h1>
+                        <div className="img-container">
+                            <img src={src} alt="PP" style={
+                                {
+                                    objectPosition:`${pos.x / scale}px ${pos.y / scale}px`, 
+                                    transform: `scale(${scale})`,
+                                    translate: `${(scale - 1)*50}% ${(scale - 1)*50}%`
+                                }
+                            }/>
+                        </div>
+                        <p className='username'>{displayName}</p>
                         <p className="icons">{user.certified && (<i className="fa-solid fa-circle-check icon" data-tip="Certifié"></i>)} {user.permissions.DASHBOARD && (<i className="fa-solid fa-desktop icon" data-tip="Staff"></i>)}</p>
                         <ReactTooltip effect='solid' />
                     </div>

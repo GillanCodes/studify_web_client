@@ -27,6 +27,7 @@
                 overflow: hidden;
                 height: 180px;
                 width: 180px;
+                border-radius: 20px;
 
             }
 
@@ -34,12 +35,9 @@
                 height: 180px;
                 width: 180px;
                 object-fit: cover;
-                border-radius: 20px;
-                top: 250px;
-                left: 250px;
             }
 
-            h1 {
+            .username {
                 text-align: center;
                 font-size: 22px;     
             }
