@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import { isEmpty } from '../../Utils';
 
 export default function Quizz({ quizz, author }) {
   return (

@@ -5,6 +5,7 @@ import { isEmpty } from '../Utils';
 import Loading from '../Modules/Loading';
 import Report from '../Modules/Report';
 import ReactTooltip from 'react-tooltip';
+import Quizz from '../Home/HomeScreen/Quizz';
 
 
 export default function ProfilViewer({ user }) {
@@ -12,12 +13,13 @@ export default function ProfilViewer({ user }) {
 
     const [isLoading, setIsLoading] = useState(true);
     const sheetsData = useSelector(state => state.sheetsReducer);
+    const quizzData = useSelector(state => state.quizzReducer);
 
     useEffect(() => {
-        if (!isEmpty(sheetsData)) {
+        if (!isEmpty(sheetsData) && !isEmpty(quizzData)) {
             setIsLoading(false);
         }
-    }, [sheetsData]);
+    }, [sheetsData, quizzData]);
 
     return (
         <div className='profil-container'>
@@ -38,22 +40,38 @@ export default function ProfilViewer({ user }) {
                         </div>
 
                         <div className="profil-content sheets">
-
-                        <h1 className='title'>Fiches de l'utilisateur</h1>
-
-                        {isLoading ? (
-                            <Loading />
-                        ) : (
-                            <div className='sheets-container'>
-                                {sheetsData.map((sheet) => {
-                                    if (sheet.author === user._id) {
-                                        return <File sheet={sheet} key={sheet._id} />
-                                    }
-                                    return null
-                                })}
+                            <div className="sheets">
+                                <h1 className='title'>Fiches de l'utilisateur</h1>
+                                {isLoading ? (
+                                    <Loading />
+                                ) : (
+                                    <div className='content'>
+                                        {sheetsData.map((sheet) => {
+                                            if (sheet.author === user._id) {
+                                                return <File sheet={sheet} key={sheet._id} />
+                                            }
+                                            return null
+                                        })}
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
+
+                            <div className="quizz">
+                                <h1 className='title'>Quizz de l'utilisateur</h1>
+                                {isLoading ? (
+                                    <Loading />
+                                ) : (
+                                    <div className='content'>
+                                        {quizzData.map((quizz) => {
+                                            if (quizz.author === user._id) {
+                                                return <Quizz quizz={quizz} key={quizz._id} />
+                                            }
+                                            return null
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                 </>
                 
             ) : (
