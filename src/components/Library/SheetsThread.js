@@ -25,14 +25,14 @@ export default function SheetsThread() {
 
 
   return (
-        <div className="sheets-thread-content">
+        <div className="thread-content">
             {isLoading ? (
                 <Loading />
             ) : (
 
                 
             
-                <div className="sheets-thread">
+                <div className="thread">
                     
                     <div className="search">
                         <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />

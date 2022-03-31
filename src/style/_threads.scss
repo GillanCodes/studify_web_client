@@ -1,14 +1,18 @@
-.sheets-thread-content {
+.thread-content {
 
     @media only screen and (min-width: 1370px) {
         width: 60vw;
         margin: auto;
     }
 
-    .sheets-thread {
+    .thread {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: center;
+
+        padding-top: 50px;
+    
+
     }
 }

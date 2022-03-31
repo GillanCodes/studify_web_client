@@ -25,11 +25,11 @@ export default function QuizzThread() {
 
 
   return (
-        <div className="quizzs-thread-content">
+        <div className="thread-content">
             {isLoading ? (
                 <Loading />
             ) : (
-                <div className="quizzs-thread">
+                <div className="thread">
                     
                     <div className="search">
                         <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />
@@ -39,12 +39,37 @@ export default function QuizzThread() {
                         </select>
                     </div>
 
-                        {quizzData.map((quizz) => {
-                            if (quizz.isPublic) {
-                                return (<Quizz quizz={quizz} author />)
-                            }
-                            return null
-                        })}
+                    {search.length >= 2 ? (
+                        <>
+                            {quizzData.map((quizz) => {
+                                if (quizz.isPublic) {
+                                    if(searchType === "tag"){
+                                        if (!isEmpty(quizz.level)){
+                                            if (quizz.level.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
+                                                return <Quizz quizz={quizz} key={quizz._id}/>
+                                            }
+                                            return null
+                                        }
+                                        return null
+                                    }
+                                    if(searchType === "title" && quizz.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                                        return <Quizz quizz={quizz} key={quizz._id}/>
+                                    }
+                                    return null
+                                } 
+                                return null
+                            })}
+                        </>
+                    ) : (
+                        <>
+                            {quizzData.map((quizz) => {
+                                if (quizz.isPublic) {
+                                    return (<Quizz quizz={quizz} author />)
+                                }
+                                return null
+                            })}
+                        </>
+                    )}
 
                 </div>
             )}
