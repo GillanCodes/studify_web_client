@@ -33,17 +33,21 @@
         
 
         .sheet-title {
-            font-size: 20px;
+            font-size: 15px;
+            font-weight: 500;
             margin: auto;
             text-align: center;
             text-decoration: underline;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .tag {
             padding: 2px;
             margin-left: 15px;
             border-radius: 5px;
-            font-size: 15px;
+            font-size: 12px;
             width: 50px;
             overflow: hidden;
             text-overflow: ellipsis;

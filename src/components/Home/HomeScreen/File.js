@@ -28,7 +28,7 @@ export default function File({ sheet, author }) {
                     </>
                     
                 )}
-                <h1 className='sheet-title'>{sheet.title}</h1>
+                <p className='sheet-title'>{sheet.title}</p>
             </div>
             
 

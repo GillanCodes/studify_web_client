@@ -108,24 +108,54 @@ export default function Homescreen() {
                     <>
                         {search.length >= 2 ? (
                             <>
-                                {sheetsData.map((sheet) => {
-                                    if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
-                                        if(searchType === "tag"){
-                                            if (!isEmpty(sheet.tag) && !isEmpty(sheet.tag.text)){
-                                                if (sheet.tag.text.toLowerCase().includes(search.toLocaleLowerCase())) {
+                            <div className="sheets content">
+                                    <h2 className='subtitle'>Fiches</h2>
+                                    <div className="box">
+                                        {sheetsData.map((sheet) => {
+                                            if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
+                                                if(searchType === "tag"){
+                                                    if (!isEmpty(sheet.tag) && !isEmpty(sheet.tag.text)){
+                                                        if (sheet.tag.text.toLowerCase().includes(search.toLocaleLowerCase())) {
+                                                            return <File sheet={sheet} key={sheet._id}/>
+                                                        }
+                                                        return null
+                                                    }
+                                                    return null
+                                                }
+                                                if(searchType === "title" && sheet.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
                                                     return <File sheet={sheet} key={sheet._id}/>
                                                 }
                                                 return null
-                                            }
+                                            } 
                                             return null
-                                        }
-                                        if(searchType === "title" && sheet.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-                                            return <File sheet={sheet} key={sheet._id}/>
-                                        }
-                                        return null
-                                    } 
-                                    return null
-                                })}
+                                        })}
+                                    </div>
+                                </div>
+
+                                <div className="sheets content">
+                                    <h2 className='subtitle'>Fiches</h2>
+                                    <div className="box">
+                                        {quizzData.map((quizz) => {
+                                            if (quizz.author === userData._id || quizz.team.includes(userData._id)) {
+                                                if(searchType === "tag"){
+                                                    if (!isEmpty(quizz.level)){
+                                                        if (quizz.level.toLowerCase().includes(search.toLocaleLowerCase())) {
+                                                            return <Quizz quizz={quizz} key={quizz._id}/>
+                                                        }
+                                                        return null
+                                                    }
+                                                    return null
+                                                }
+                                                if(searchType === "title" && quizz.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                                                    return <Quizz quizz={quizz} key={quizz._id}/>
+                                                }
+                                                return null
+                                            } 
+                                            return null
+                                        })}
+                                    </div>
+                                </div>
+                                
                             </>
                         ): (
                             <>
