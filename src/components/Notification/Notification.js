@@ -45,6 +45,7 @@ export default function Notification() {
       <>
         {!opened && (<i className="far fa-bell" onClick={() => setOpened(!opened)}></i>)}
 		{opened && (<i className="fas fa-bell" onClick={() => setOpened(!opened)}></i>)}
+        {unread >= 1 && (<i className="fa-solid fa-circle unread-mark"></i>)}
 
         {opened && (
             <div className="dropdown-content">
