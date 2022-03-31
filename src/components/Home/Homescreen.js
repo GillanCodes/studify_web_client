@@ -16,12 +16,21 @@ export default function Homescreen() {
     const [searchType, setSearchType] = useState('tag');
     const [search, setSearch] = useState('');
 
-
     const sheetsData = useSelector(state => state.sheetsReducer);
     const quizzData = useSelector(state => state.quizzReducer);
     const userData = useSelector(state => state.userReducer);
 
     const dispatch = useDispatch();
+
+    function updatedFirst( a, b ) {
+        if ( Date.parse(a.updatedAt) > Date.parse(b.updatedAt) ){
+          return -1;
+        }
+        if ( Date.parse(a.updatedAt) < Date.parse(b.updatedAt) ){
+          return 1;
+        }
+        return 0;
+    }
 
     useEffect(() => {
       if (!isEmpty(sheetsData) && !isEmpty(userData) && !isEmpty(quizzData)) {
@@ -162,7 +171,7 @@ export default function Homescreen() {
                                 <div className="sheets content">
                                     <h2 className='subtitle'>Fiches</h2>
                                     <div className="box">
-                                        {sheetsData.map((sheet) => {
+                                        {sheetsData.sort(updatedFirst).map((sheet) => {
                                             if (sheet.author === userData._id || sheet.team.includes(userData._id)) {
                                                 return <File sheet={sheet} key={sheet._id}/>
                                             } 
@@ -174,7 +183,7 @@ export default function Homescreen() {
                                 <div className="quizz content">
                                     <h2 className='subtitle'>Quizz</h2>
                                     <div className="box">
-                                        {quizzData.map((quizz) => {
+                                        {quizzData.sort(updatedFirst).map((quizz) => {
                                             if (quizz.author === userData._id || quizz.team.includes(userData._id)) {
                                                 return <Quizz quizz={quizz} />
                                             } 
