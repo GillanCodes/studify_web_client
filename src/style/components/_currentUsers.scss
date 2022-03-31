@@ -14,12 +14,18 @@
 
     overflow: hidden;
 
-    img {
-        display: block;
-        margin: 9px;
+    .img-display {
         height: 32px;
         width: 32px;
+        overflow: hidden;
         border-radius: 10px;
+        margin: 9px;
+    }
+
+    img {
+        display: block;
+        height: 32px;
+        width: 32px;
         object-fit: cover;
     }
 
