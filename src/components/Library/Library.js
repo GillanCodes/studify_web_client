@@ -4,7 +4,7 @@ export default function Library() {
 
 
   return (
-    <div className='library-container'>
+    <div className='library-container app-container'>
 
         <h1>La Bibliotheque !</h1>
 

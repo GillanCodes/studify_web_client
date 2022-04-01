@@ -24,7 +24,7 @@ export default function Sheet() {
     } , [sheetsData])
 
   return (
-      <div className='sheet-container'>
+      <div className='sheet-container app-container'>
 
             {isLoading ? (
                 <Loading />

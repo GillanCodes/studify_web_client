@@ -78,7 +78,7 @@ export default function Homescreen() {
 
     return (
 
-        <div className='homescreen-container'>
+        <div className='homescreen-container app-container'>
             <div className="search">
                 <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />
                 <select onClick={(e) => setSearchType(e.target.value)}>

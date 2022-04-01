@@ -15,6 +15,9 @@ export default function ProfilViewer({ user }) {
     const sheetsData = useSelector(state => state.sheetsReducer);
     const quizzData = useSelector(state => state.quizzReducer);
 
+    const [displaySheets, setDisplaySheets] = useState(true);
+    const [displayQuizz, setDisplayQuizz] = useState(true);
+
     useEffect(() => {
         if (!isEmpty(sheetsData) && !isEmpty(quizzData)) {
             setIsLoading(false);
@@ -22,7 +25,7 @@ export default function ProfilViewer({ user }) {
     }, [sheetsData, quizzData]);
 
     return (
-        <div className='profil-container'>
+        <div className='profil-container app-container'>
             
             
             {!user.ban.isBan ? (
@@ -41,36 +44,46 @@ export default function ProfilViewer({ user }) {
 
                         </div>
 
-                        <div className="profil-content sheets">
+                        <div className="profil-content docs">
+                
                             <div className="sheets">
-                                <h1 className='title'>Fiches de l'utilisateur</h1>
-                                {isLoading ? (
-                                    <Loading />
-                                ) : (
-                                    <div className='content'>
-                                        {sheetsData.map((sheet) => {
-                                            if (sheet.author === user._id) {
-                                                return <File sheet={sheet} key={sheet._id} />
-                                            }
-                                            return null
-                                        })}
-                                    </div>
+                                <h2 className='title' onClick={() => setDisplaySheets(!displaySheets)}>Fiches de l'utilisateur {displaySheets ? (<i class="fa-solid fa-angle-down open"></i>) : <i class="fa-solid fa-angle-down closed"></i>}</h2>
+                                {displaySheets && (
+                                    <>
+                                        {isLoading ? (
+                                            <Loading />
+                                        ) : (
+                                            <div className='content'>
+                                                {sheetsData.map((sheet) => {
+                                                    if (sheet.author === user._id) {
+                                                        return <File sheet={sheet} key={sheet._id} />
+                                                    }
+                                                    return null
+                                                })}
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
 
+                            
                             <div className="quizz">
-                                <h1 className='title'>Quizz de l'utilisateur</h1>
-                                {isLoading ? (
-                                    <Loading />
-                                ) : (
-                                    <div className='content'>
-                                        {quizzData.map((quizz) => {
-                                            if (quizz.author === user._id) {
-                                                return <Quizz quizz={quizz} key={quizz._id} />
-                                            }
-                                            return null
-                                        })}
-                                    </div>
+                                <h2 className='title' onClick={() => setDisplayQuizz(!displayQuizz)}>Quizz de l'utilisateur {displayQuizz ? (<i class="fa-solid fa-angle-down open"></i>) : <i class="fa-solid fa-angle-down closed"></i>}</h2>
+                                {displayQuizz && (
+                                    <>
+                                        {isLoading ? (
+                                            <Loading />
+                                        ) : (
+                                            <div className='content'>
+                                                {quizzData.map((quizz) => {
+                                                    if (quizz.author === user._id) {
+                                                        return <Quizz quizz={quizz} key={quizz._id} />
+                                                    }
+                                                    return null
+                                                })}
+                                        </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
                         </div>

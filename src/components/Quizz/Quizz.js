@@ -34,7 +34,7 @@ export default function Quizz() {
     })
 
   return (
-    <div className='quizz-container'>
+    <div className='quizz-container app-container'>
         {loading ? (
             <h1>Load</h1>
         ) : (  

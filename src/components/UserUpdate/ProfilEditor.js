@@ -102,7 +102,7 @@ export default function ProfilEditor({ user }) {
     }, [sheetsData]);
 
     return (
-        <div className='profil-container'>
+        <div className='profil-container app-container'>
             
             <div className="profil-content profil">
                 <div className="buttons">
