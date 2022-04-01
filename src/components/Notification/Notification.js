@@ -1,3 +1,4 @@
+import { Badge } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,8 +44,9 @@ export default function Notification() {
 
   return (
       <>
+
         {!opened && (<i className="far fa-bell" onClick={() => setOpened(!opened)}></i>)}
-		{opened && (<i className="fas fa-bell" onClick={() => setOpened(!opened)}></i>)}
+        {opened && (<i className="fas fa-bell" onClick={() => setOpened(!opened)}></i>)}
         {unread >= 1 && (<i className="fa-solid fa-circle unread-mark" onClick={() => setOpened(!opened)}></i>)}
 
         {opened && (

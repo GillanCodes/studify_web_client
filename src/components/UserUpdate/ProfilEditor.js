@@ -1,17 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import File from '../Home/HomeScreen/File';
 import { isEmpty } from '../Utils';
 import Loading from '../Modules/Loading';
 import axios from 'axios';
 import ReactTooltip from 'react-tooltip';
 import Quizz from '../Home/HomeScreen/Quizz';
+import { resetProfilImage } from '../../action/user.action';
 
 
 export default function ProfilEditor({ user }) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [editing, setEditing] = useState(false)
+
+    const [displaySheets, setDisplaySheets] = useState(true);
+    const [displayQuizz, setDisplayQuizz] = useState(true);
 
     const [displayName, setDisplayName] = useState(user.displayName ? user.displayName : user.username);
     const [file, setFile] = useState();
@@ -24,13 +28,16 @@ export default function ProfilEditor({ user }) {
 
     const [src, setSrc] = useState(user.userPic.imageUrl);
 
+    const dispatch = useDispatch()
+
     const handleFile = (e) => {
         setFile(e.target.files[0]);
         setSrc(URL.createObjectURL(e.target.files[0]));
     }
 
     const saveHandle = (e) => {
-        
+        setEditing(false)
+
         if (isEmpty(displayName)) {
             setDisplayName(user.username)
         }
@@ -56,6 +63,11 @@ export default function ProfilEditor({ user }) {
     }
 
     const handlePic = () => {
+        if (file === "reset") {
+            console.log("nop")
+            return
+        }
+
         const data = new FormData();
         data.append('username', user.username);
         data.append('userId', user._id);
@@ -75,6 +87,14 @@ export default function ProfilEditor({ user }) {
         }).catch((err) => console.log(err));
     }
 
+    const resetPicHandle = () => {
+        setEditing(false)
+        setSrc("./cdn/content/default-user-pics.png");
+        setFile("reset");
+        dispatch(resetProfilImage(user._id));
+        
+    }
+
     useEffect(() => {
         if (!isEmpty(sheetsData)) {
             setIsLoading(false);
@@ -87,7 +107,7 @@ export default function ProfilEditor({ user }) {
             <div className="profil-content profil">
                 <div className="buttons">
                     <p className="button" onClick={() => setEditing(!editing)}><i className="fas fa-edit"></i></p>
-                    {editing && ( <p className="button" onClick={saveHandle}><i className="far fa-save"></i></p>)}
+                    {/* {editing && (<p className="button" onClick={saveHandle}><i className="far fa-save"></i></p>)} */}
                 </div>
                 {editing ? (
                     <div className="head">
@@ -95,9 +115,12 @@ export default function ProfilEditor({ user }) {
                             <img src={src} alt="PP" />
                         </div>
                         <input type="file" name="userpic" id="userpic" accept='.jpg, .jpeg, .png' onChange={(e) => handleFile(e)} />
+                        
                         <p id="errorType" className='errors'></p>
                         <p id="errorSize" className='errors'></p>
                         <input type="text" name="username" id="username" defaultValue={displayName} onChange={(e) => setDisplayName(e.target.value)}/>
+                        <button className='button error' onClick={resetPicHandle}>Supprimer l'avatar</button>
+                        <button className="button" onClick={saveHandle}>Sauvegarder</button>
                     </div>
                 ) : (
                     <div className="head">
@@ -111,38 +134,48 @@ export default function ProfilEditor({ user }) {
                 )}
             </div>
 
-            <div className="profil-content sheets">
+            <div className="profil-content docs">
+                
                 <div className="sheets">
-                    <h1 className='title'>Fiches de l'utilisateur</h1>
-                    {isLoading ? (
-                        <Loading />
-                    ) : (
-                        <div className='content'>
-                            {sheetsData.map((sheet) => {
-                                if (sheet.author === user._id) {
-                                    return <File sheet={sheet} key={sheet._id} />
-                                }
-                                return null
-                            })}
-                        </div>
+                    <h2 className='title' onClick={() => setDisplaySheets(!displaySheets)}>Fiches de l'utilisateur {displaySheets ? (<i class="fa-solid fa-angle-down open"></i>) : <i class="fa-solid fa-angle-down closed"></i>}</h2>
+                    {displaySheets && (
+                        <>
+                            {isLoading ? (
+                                <Loading />
+                            ) : (
+                                <div className='content'>
+                                    {sheetsData.map((sheet) => {
+                                        if (sheet.author === user._id) {
+                                            return <File sheet={sheet} key={sheet._id} />
+                                        }
+                                        return null
+                                    })}
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
 
-                <div className="quizz">
-                    <h1 className='title'>Quizz de l'utilisateur</h1>
-                    {isLoading ? (
-                        <Loading />
-                    ) : (
-                        <div className='content'>
-                            {quizzData.map((quizz) => {
-                                if (quizz.author === user._id) {
-                                    return <Quizz quizz={quizz} key={quizz._id} />
-                                }
-                                return null
-                            })}
-                        </div>
-                    )}
-                </div>
+                
+                    <div className="quizz">
+                        <h2 className='title' onClick={() => setDisplayQuizz(!displayQuizz)}>Quizz de l'utilisateur {displayQuizz ? (<i class="fa-solid fa-angle-down open"></i>) : <i class="fa-solid fa-angle-down closed"></i>}</h2>
+                        {displayQuizz && (
+                            <>
+                                {isLoading ? (
+                                    <Loading />
+                                ) : (
+                                    <div className='content'>
+                                        {quizzData.map((quizz) => {
+                                            if (quizz.author === user._id) {
+                                                return <Quizz quizz={quizz} key={quizz._id} />
+                                            }
+                                            return null
+                                        })}
+                                    </div>
+                                )}
+                            </>
+                        )}
+                    </div>
             </div>
         </div>
     );

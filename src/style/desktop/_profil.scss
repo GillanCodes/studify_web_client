@@ -93,8 +93,28 @@
             cursor: pointer;
         }
 
+        
+
+        .title i.closed {
+            animation: rotate 0.5s normal forwards;
+        }
+
+        .title i.open {
+            animation: antirotate 0.5s normal forwards;
+        }
+
         .title::-moz-selection { color: none }
         .title::-webkit-selection { color: none}
+
+        @keyframes rotate {
+            0% { rotate: 0deg; }
+            100% { rotate: -90deg; }
+        }
+
+        @keyframes antirotate {
+            0% { rotate: -90deg; }
+            100% { rotate: 0deg; }
+        }
     }
 
     .content {
