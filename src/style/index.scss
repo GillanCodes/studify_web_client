@@ -1,22 +1,26 @@
 @import './settings';
-@import './navbar';
-@import './auth';
-@import './homescreen';
-@import 'introduction';
-@import './profil';
-@import './threads';
-@import './library';
 
-@import './components/file';
-@import './components/editor';
-@import './components/notification';
-@import './components/squarenav';
-@import './components/popup';
-@import './components/currentUsers';
-@import './components/report';
-@import './components/searchBar';
-@import './components/quizz';
-@import './components/quizzResult';
+// @media only screen and (min-width: 1250px) 
+    @import './desktop/navbar';
+    @import './desktop/auth';
+    @import './desktop/homescreen';
+    @import './desktop/introduction';
+    @import './desktop/profil';
+    @import './desktop/threads';
+    @import './desktop/library';
+    
+    @import './desktop/components/file';
+    @import './desktop/components/editor';
+    @import './desktop/components/notification';
+    @import './desktop/components/squarenav';
+    @import './desktop/components/popup';
+    @import './desktop/components/currentUsers';
+    @import './desktop/components/report';
+    @import './desktop/components/searchBar';
+    @import './desktop/components/quizz';
+    @import './desktop/components/quizzResult';
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
@@ -34,6 +38,8 @@ body {
 .is-success {
     color: $success
 }
+
+
 
 button.button {
     text-align: center;
@@ -53,6 +59,27 @@ button.button {
 
 button.button:hover {
     background-color: rgb(32, 0, 158);
+}
+
+button.button.success {
+    background-color: $success-dark;
+}
+button.button.success:hover {
+    background-color: $success-dark-hover;
+}
+
+button.button.info {
+    background-color: $info-dark;
+}
+button.button.info:hover {
+    background-color: $info-dark-hover;
+}
+
+button.button.error {
+    background-color: $error-dark;
+}
+button.button.error:hover {
+    background-color: $error-dark-hover;
 }
 
 button.button:disabled {

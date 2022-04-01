@@ -8,6 +8,7 @@
         
         justify-content: space-evenly;
         margin: 0;
+        padding: 10px;
 
         width: 180px;
 
@@ -21,6 +22,7 @@
         
         width: 180px;
 
+
         .head {
 
             .img-container {
@@ -29,6 +31,10 @@
                 width: 180px;
                 border-radius: 20px;
 
+            }
+
+            .button {
+                width: 100%;
             }
 
             img {
@@ -50,6 +56,7 @@
             input[type="file"] {
                 overflow: hidden;
                 max-width: 180px;   
+                padding: 5px 0px;
             }
 
             input[type="text"] {
@@ -71,21 +78,29 @@
             }
         }
 
+        
+
     }
 
-    .sheets{
+    .docs{
+
+        width: 100%;
         
         .title {
             text-align: center;
             margin-top: 25px;
             margin-bottom: 25px;
+            cursor: pointer;
         }
+
+        .title::-moz-selection { color: none }
+        .title::-webkit-selection { color: none}
     }
 
     .content {
         display: flex;
         flex-wrap: wrap;
-
+        transition-duration: 1s;
     }
 
 }
