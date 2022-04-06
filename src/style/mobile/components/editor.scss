@@ -13,17 +13,6 @@
     justify-content: center;
   }
   
-  .sheet-container .ql-toolbar.ql-snow {
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-    background-color: #F3F3F3;
-    border: none;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-  }
-  
   .sheet-container .viewer .ql-toolbar.ql-snow {
     display: none;
   }
@@ -35,8 +24,8 @@
 
   .save {
     position: fixed;
-    bottom: 75px;
-    left: 75px;
+    bottom: 10%;
+    left: 5%;
     font-size: 30px;
     z-index: 2;
 

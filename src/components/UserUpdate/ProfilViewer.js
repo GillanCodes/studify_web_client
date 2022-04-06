@@ -32,7 +32,7 @@ export default function ProfilViewer({ user }) {
                 <>
                     <div className="profil-content profil">
 
-                        <div className="head">
+                        <div className="head is-mobile-spaced">
                             <div className='img-container'>
                                 <img src={user.userPic.imageUrl} alt="PP"/>
                             </div>

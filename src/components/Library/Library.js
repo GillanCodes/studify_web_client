@@ -6,11 +6,11 @@ export default function Library() {
   return (
     <div className='library-container app-container'>
 
-        <h1>La Bibliotheque !</h1>
+        <h1 className='is-spaced'>La Bibliotheque !</h1>
 
             <div className="library-content">
                 <div className="sheets">
-                    <h2>Les Fiches</h2>
+                    <h2 className='is-spaced'>Les Fiches</h2>
                     
                     <div className="file" onClick={() => window.location = `/sheets/`}>
                         <div className="file-head">
@@ -24,7 +24,7 @@ export default function Library() {
                 </div>
 
                 <div className="quizz">
-                    <h2>Les Quizz</h2>
+                    <h2 className='is-spaced'>Les Quizz</h2>
 
                     <div className="file" onClick={() => window.location = `/quizz/`}>
                         <div className="file-head">

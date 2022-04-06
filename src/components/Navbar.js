@@ -46,30 +46,33 @@ export default function Navbar() {
 				</NavLink>
 				<div className="nav-item"></div>
 				<NavLink exact="true" to="/library" className={"nav-item"}>
-					<i className="fa-solid fa-book"></i> La bibliotheque 
+					<i className="fa-solid fa-book"></i> <span className='text'>La bibliotheque </span>
 				</NavLink>
 				<NavLink exact="true" to="/about" className={"nav-item"}>
-				 	<i className="fas fa-address-card"></i> A Propos
+				 	<i className="fas fa-address-card"></i> <span className='text'>A Propos</span>
 				</NavLink>
 				<NavLink exact="true" to="/partners" className={"nav-item"}>
-					<i className="fas fa-handshake"></i> Nos Partenaires
+					<i className="fas fa-handshake"></i> <span className='text'>Nos Partenaires</span>
 				</NavLink>
 				<p className="nav-item">
-					Version du 25 Mars 2022
+					<span className='version text'>Version du 25 Mars 2022</span>
 				</p>
 				
 			</div>
 			<div className="navbar-content">
 				{displayUser ? (
 					<>
-						<div className='nav-item notification'>
+						<div className='nav-item notification not-mobile'>
 							<Notification />
 						</div>
 						{userData.permissions.DASHBOARD && (
 							<a href={process.env.REACT_APP_DASHBOARD_URL} target="_blank" className="nav-item"><i className="fa-solid fa-chart-line"></i></a>
 						)}
-						<NavLink exact="true" to={"/" + userData.username} className={"nav-item"}>
+						<NavLink exact="true" to={"/" + userData.username} className={"nav-item not-mobile"}>
 							{userData.displayName ? userData.displayName : userData.username}
+						</NavLink>
+						<NavLink exact="true" to={"/" + userData.username} className={"nav-item not-desktop"}>
+							<i className="fa-solid fa-user"></i>
 						</NavLink>
 						<div className="nav-item" onClick={logoutHandle}>
 							<i className="fas fa-sign-out-alt"></i>

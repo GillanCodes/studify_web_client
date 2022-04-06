@@ -15,7 +15,7 @@ export default function CurrentUsers({currentUsers}) {
     
 
   return (
-    <div className='current'>
+    <div className='current not-mobile'>
         {isLoading ? (
             <Loading />
         ) : (

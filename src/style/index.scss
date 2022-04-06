@@ -1,24 +1,52 @@
 @import './settings';
+@import "./printing";
 
 // @media only screen and (min-width: 1250px) 
-    @import './desktop/navbar';
+
     @import './desktop/auth';
     @import './desktop/homescreen';
     @import './desktop/introduction';
-    @import './desktop/profil';
     @import './desktop/threads';
-    @import './desktop/library';
     
     @import './desktop/components/file';
-    @import './desktop/components/editor';
     @import './desktop/components/notification';
     @import './desktop/components/squarenav';
     @import './desktop/components/popup';
     @import './desktop/components/currentUsers';
     @import './desktop/components/report';
     @import './desktop/components/searchBar';
+
     @import './desktop/components/quizz';
+
+    
+@media only screen and (min-width: 1000px) {
+    .not-desktop {
+        display: none
+    }
+    @import './desktop/navbar';
+    @import './desktop/library';
+    @import './desktop/components/editor';
+    @import './desktop/profil';
     @import './desktop/components/quizzResult';
+}
+
+@media only screen and (max-width: 1000px) {
+    .not-mobile {
+        display: none
+    }
+    
+    .is-mobile-spaced {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    @import './mobile/navbar';
+    @import './mobile/library';
+    @import './mobile/components/editor';
+    @import './mobile/components/quizz';
+    @import './mobile/profil';
+    @import './mobile/components/quizzResult';
+}
 
 
 
@@ -43,6 +71,10 @@ body {
     color: $success
 }
 
+.is-spaced {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 
 button.button {
