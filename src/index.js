@@ -17,6 +17,10 @@ const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
+// const store = createStore(
+//   rootReducer, applyMiddleware(thunk)
+// );
+
 store.dispatch(getSheets());
 store.dispatch(getQuizz());
 store.dispatch(getUsers());
