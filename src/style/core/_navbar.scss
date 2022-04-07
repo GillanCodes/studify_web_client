@@ -22,7 +22,8 @@
     //Properties
 .navbar-container {
     height: $navbar-height;
-    display: flex;
+    display: flex; 
+    @media print { display: none;}
     flex-direction: row;
     justify-content: space-between;
 

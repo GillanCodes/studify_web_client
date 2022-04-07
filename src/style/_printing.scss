@@ -1,0 +1,22 @@
+@media print {
+    body {
+      background: none;
+    }
+
+    //.navbar-container { See "_navbar.scss" }
+    .save { display: none; }
+    .sheet-container .ql-toolbar.ql-snow { display: none; }
+    footer { display: none; }
+  
+    .sheet-container .ql-editor {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      box-shadow: none;
+      border: none;
+      align-self: flex-start;
+    }
+  
+   
+  }
