@@ -1,49 +1,41 @@
-$black: #000;
-$white: #FFF;
+// -----------------------------------
+//      Settings of Studify Api
+// -----------------------------------
 
-
-$link-text: #FFF;
-$link-text-active: rgb(255, 87, 87);
-
-$color1: #000;
-$color2: rgb(223, 223, 223);
-$color3: rgb(177, 177, 177);
-
-$text-color1: rgb(0, 41, 144);
-$text-color2: rgb(73, 83, 141);
-
-$pop_bg: #979797;
-
-$toolbar: #f3f3f3;
-
-$border: #000;
-
-$tag-color: #555;
-
-$notification: #FFF;
-$notification-hover: rgb(228, 228, 228);
-$unread-notification: rgb(173, 173, 173);
-
-$button: rgb(255, 162, 162);
-$button-hover: #cacaca;
-
-$info-dark: rgb(3, 117, 217);
-$info-dark-hover:rgb(1, 99, 185);
-
-
-$success-bg: rgba(114, 255, 101, 0.246);
-$success: rgb(19, 151, 52);
-$success-dark: rgb(0, 181, 45);
-$success-dark-hover: rgb(0, 159, 40);
-
-$error: rgb(255, 101, 101);
-$error-dark: rgb(255, 44, 44);
-$error-dark-hover: rgb(226, 0, 0);
-$error2:rgb(255, 56, 56);
-
-
+    // Sizes
+$default-margin: 2em;
 $footer-height: 200px;
+$navbar-height: 50px;
 
-$border-color1: rgb(11, 0, 160);
-$border-color2: rgb(255, 26, 26);
-$border-color3: rgb(0, 177, 35);
+$media-screen: 1000px;
+
+
+    // Colors
+
+$white: #FFF;
+$black: #000;
+
+$red: rgb(255, 44, 44);
+$green: rgb(12, 187, 0);
+$blue: rgb(0, 106, 255);
+
+//         //Accents Color
+// $color-a-bright: #7370BF;
+// $color-a-light: #4E4BA6;
+// $color-a-main: #353199;
+// $color-a-dark: #221E7D;
+// $color-a-darker: #120E62;
+
+//         //Accents Color
+$color-a-bright: #BBB9FB;
+$color-a-light: #8E8AF6;
+$color-a-main: #6B66F1;
+$color-a-dark: #4A44E9;
+$color-a-darker: #2720DC;
+
+        //Dark Theme
+$color-d-bright: #6E6C82;
+$color-d-light: #504E63;
+$color-d-main: #333140;
+$color-d-dark: #1F1D31;
+$color-d-darker: #15132B;
