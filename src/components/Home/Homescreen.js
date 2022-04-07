@@ -88,14 +88,14 @@ export default function Homescreen() {
             </div>
             <div className="homescreen-content">
                 <div className="news content">
-                    <h2 className='subtitle'>Tableau de bord</h2>
+                    <h1 className='subtitle'>Tableau de bord</h1>
                     <div className="box">
                         <div className="file" onClick={newSheetHandle}>
                             <div className="file-head">
                                 <p><i className="fas fa-file-download"></i></p>
                             </div>
                             <div className="file-footer">
-                                <h1 className='sheet-title'>Créer une Fiche</h1>
+                                <p className='sheet-title'>Créer une Fiche</p>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@ export default function Homescreen() {
                                 <p><i className="fas fa-file-download"></i></p>
                             </div>
                             <div className="file-footer">
-                                <h1 className='sheet-title'>Créer un Quizz</h1>
+                                <p className='sheet-title'>Créer un Quizz</p>
                             </div>
                         </div>
                     </div>

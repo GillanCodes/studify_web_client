@@ -18,7 +18,7 @@ export default function Quizz({ quizz, author }) {
                     </>
                     
                 )}
-                <h1 className='sheet-title'>{quizz.title}</h1>
+                <p className='sheet-title'>{quizz.title}</p>
             </div>
             
 
