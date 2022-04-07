@@ -60,6 +60,7 @@ export default function QuizzViewer({quizz}) {
         }
 
         var interval = setInterval(() => {
+            setAnswer('');
             qResult.innerHTML = "Valider";
             qResult.disabled = false;
             qResult.className = "button";
@@ -104,7 +105,7 @@ export default function QuizzViewer({quizz}) {
                     {init && (<p className="question">{question.question}</p>)}
                 </div>
                 <div className="field">
-                    <input type="text" name="answer" id="answer" className="answer" onChange={(e) => setAnswer(e.target.value)} onKeyDown={(e) => e.key === "Enter" ? anwserHandle() : null} />
+                    <input type="text" name="answer" id="answer" className="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} onKeyDown={(e) => e.key === "Enter" ? anwserHandle() : null} />
                     <button className="button" id='result' onClick={anwserHandle}>Valider</button>
                     <button className="button" id='home' style={{display: "none"}} onClick={() => window.location = "/"}>Revenir a l'accueil</button>
                     <div class="progress">
