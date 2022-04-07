@@ -1,0 +1,39 @@
+    //Colors
+.library-container {
+    background-color: $color-d-main;
+    color: $color-a-bright;
+}
+
+.library-container {
+
+    min-height: calc(100vh - $footer-height);
+
+    h1 {
+        text-align: center;
+        padding: $default-margin;
+    }
+
+   .library-content {
+        display: flex;
+        justify-content: center;
+        padding-bottom: $default-margin;
+
+        h2 {
+            text-align: center;
+        }
+        
+        @media screen and (min-width: $media-screen) {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        @media screen and (max-width: $media-screen) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        
+
+   }
+    
+}

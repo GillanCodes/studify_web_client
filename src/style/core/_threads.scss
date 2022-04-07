@@ -1,0 +1,28 @@
+    //Colors
+
+.thread-content {
+    background-color: $color-d-main;
+}
+
+
+    //Properties
+.thread-content {
+
+    min-height: calc(100vh - $footer-height);
+
+    .thread {
+
+        width: 80%;
+        margin: auto;
+
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+
+        padding-top: calc($default-margin + 50px);
+        padding-bottom: calc($default-margin + 50px);
+    
+
+    }
+}

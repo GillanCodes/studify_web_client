@@ -1,0 +1,86 @@
+    //Colors
+.navbar-container {
+    background-color: $color-d-darker;
+
+    .navbar-content{
+
+        .nav-item{
+            color: $white;
+        }
+
+        .active {
+            color: $color-a-light;
+        }
+    }
+}
+
+// .navbar-container.light {
+//     background-color: $color-d-main;
+// }
+
+
+    //Properties
+.navbar-container {
+    height: $navbar-height;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .navbar-content {
+        
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        height: 100%;
+        width: fit-content;
+
+        .nav-item {
+            text-align: center;
+            justify-content: center;
+            text-decoration: none;
+            margin: 0px 10px;
+            font-size: 16px;
+        }
+
+        .active {
+            text-decoration: underline;
+        }
+
+        .notification {
+            display: flex;
+
+            .unread-mark {
+                margin-top: -4px;
+                margin-left: -8px;
+                margin-right: -5px;
+                font-size: 10px;
+              }
+        }
+    }
+
+}
+
+@media screen and (max-width: $media-screen) {
+    .navbar-container {
+        
+    
+        .navbar-content {
+            
+           
+    
+            .nav-item {
+
+               .text {
+                   display: none;
+               }
+            }
+    
+            .active {
+              
+            }
+    
+        }
+    
+    }
+}

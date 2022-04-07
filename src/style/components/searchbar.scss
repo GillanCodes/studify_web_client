@@ -1,0 +1,40 @@
+    //Colors
+.search {
+     input[type=text], select {
+         background-color: $color-d-dark;
+         color: $color-a-bright;
+     }
+
+     
+}
+
+
+    //Properties
+.search {  
+    top: 90px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 362px;
+    margin-top: -15px;
+
+    input[type=text] {
+        width: 250px;
+        border: solid 1px $color-a-main;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+
+    select {
+        width: 100px;
+        border: solid 1px $color-a-main;
+        border-radius: 5px;
+        background-color: white;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 18px;
+    }
+}

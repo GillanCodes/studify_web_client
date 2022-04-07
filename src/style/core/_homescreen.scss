@@ -1,0 +1,44 @@
+    //Color
+.homescreen-container {
+    background-color: $color-d-main;
+    color: $white;
+}
+
+
+    //Properties
+.homescreen-container {
+    
+    padding-top: $default-margin;
+    min-height: 100vh;
+
+    .homescreen-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        justify-content: center;
+        align-items: center;
+        
+        padding: 25px;
+
+        .subtitle {
+            text-align: center;
+        }
+
+        .content{
+            margin-top: 25px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+
+
+
+    }
+
+}

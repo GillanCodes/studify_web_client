@@ -1,0 +1,91 @@
+    // Color
+.file {
+
+    .file-head {
+        color: $color-a-bright
+    }
+
+    .file-footer {
+
+        .sheet-title {
+            color: $color-a-bright;
+        }
+    }
+}
+
+    //Properties
+
+.file {
+    margin: 10px;
+    
+    width: 250px;
+    height: 150px;
+
+    border: 2px solid $color-a-light;
+    border-radius: 10px;
+
+    box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 16px 19px 29px -15px rgba(0,0,0,0.75);
+    transition-duration: 0.2s;
+
+    .file-head {
+        height: 115px;
+        text-align: center;
+        font-size: 75px;
+
+        p{
+            padding-top: 10px;
+        }
+    }
+
+    .file-footer {
+
+        border-top: 1px solid $color-a-light; 
+        height: 35px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+
+        .sheet-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin: auto;
+            text-align: center;
+            text-decoration: underline;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .tag {
+            padding: 2px;
+            margin-left: 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            white-space: nowrap;
+            // background-color: $tag-color;
+
+        }
+
+        .tag.level {
+            background-color: $color-d-bright;
+            color: white;
+        }
+    }
+}
+
+.file:hover{
+    box-shadow: 20px 23px 29px -15px rgba(0,0,0,1);
+    -webkit-box-shadow: 20px 23px 29px -15px rgba(0,0,0,1);
+    -moz-box-shadow: 20px 23px 29px -15px rgba(0,0,0,1);
+
+    transition-duration: 0.2s;
+
+    cursor: pointer;
+}
