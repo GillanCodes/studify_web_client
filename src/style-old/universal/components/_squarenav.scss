@@ -1,0 +1,115 @@
+.navigation {
+    background: $main;
+    border-radius: 10px;
+    
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+
+    transition-delay: 0.8s;
+}
+
+.navigation.active{
+    height: 200px;
+    width: 200px;
+    transition: 0.3s;
+}
+
+.navigation span {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: $white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translate(calc(12px * var(--x)), calc(12px * var(--y)));
+    transition: 0.3s;
+    transition-delay:  calc(0.1s * var(--i));
+
+    i {
+        display: none;
+    }
+
+}
+
+.navigation.active span {
+    transform: translate(calc(60px * var(--x)), calc(60px * var(--y)));
+    transition: 0.3s;
+    width: 45px;
+    height: 45px;
+    background-color: $dark2;
+
+    i {
+        display: block;
+        font-size: 20px;
+    }
+}
+
+.navigation span {
+    z-index: 2;
+}
+
+span.one {
+    --i: 0;
+    --x: -1;
+    --y: 0
+}
+
+span.two {
+    --i: 1;
+    --x: 1;
+    --y: 0
+}
+
+span.three {
+    --i: 2;
+    --x: 0;
+    --y: -1
+}
+
+span.four {
+    --i: 3;
+    --x: 0;
+    --y: 1
+}
+
+span.five {
+    --i: 4;
+    --x: 1;
+    --y: 1
+}
+
+span.six {
+    --i: 5;
+    --x: -1;
+    --y: -1
+}
+
+span.seven {
+    --i: 6;
+    --x: 0;
+    --y: 0
+}
+
+span.eight {
+    --i: 7;
+    --x: -1;
+    --y: 1
+}
+
+span.nine {
+    --i: 8;
+    --x: 1;
+    --y: -1
+}

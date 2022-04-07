@@ -1,0 +1,22 @@
+.library-container {
+
+    min-height: calc(100vh/2 - 1px);
+
+    h1 {
+        text-align: center;
+    }
+
+   .library-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+
+        h2 {
+            text-align: center;
+        }
+
+   }
+    
+
+}

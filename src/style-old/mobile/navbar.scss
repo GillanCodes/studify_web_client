@@ -1,0 +1,46 @@
+.navbar-container {
+
+    //width: 100vw;
+    height: 48px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: $color-navbar-bg;
+    
+    .navbar-content {
+
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        height: 100%;
+        width: fit-content;
+
+        text-align: center;
+
+        .nav-item {
+            text-align: center;
+            justify-content: center;
+
+            color: $color-navbar-item;
+            text-decoration: none;
+            font-size: 20px;
+
+            margin-left: 10px;
+            margin-right: 10px;
+            
+            .text {
+                display: none;
+            }
+        }
+
+        .active {
+            color: $color-navbar-active;
+            text-decoration: underline;
+        }
+
+    }
+
+}

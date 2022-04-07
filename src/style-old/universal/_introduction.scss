@@ -1,0 +1,114 @@
+.introduction {
+
+    overflow-y: hidden;
+
+    .header img {
+        width: calc(100vw - 17px);
+        height: 50vh;
+        object-fit: cover;
+    }
+
+    .container {
+        
+
+        margin-top: 50px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+
+        overflow: hidden;
+
+        .box {
+            
+            width: calc(50vw - 150px);
+            min-height: 150px;
+
+            .title {
+                margin-left: 20px;
+                text-decoration: underline;
+                margin-bottom: 10px;
+            }
+
+            .article {
+                
+            }
+ 
+        }
+
+
+    }
+
+    .stats_container {
+        
+
+        margin-top: 50px;
+
+        .title {
+            margin-left: 100px;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            
+            
+        }
+
+        .stat {
+            
+            text-align: center;
+            width: 250px;
+
+            border: 1px solid $border;
+            border-radius: 20px;
+
+            padding: 2% 0;
+
+            background-color: $dark1;
+            transition-duration: 0.02s;
+            
+        }
+
+        .stat:hover {
+            background-color: $dark2;
+            transition-duration: 0.02s;
+        }
+
+    }
+
+    .partenaires {
+        margin-top: 20px;
+
+        display: flex;
+        flex-direction: row;
+
+        .box {
+            text-align: center;        
+
+            .icon {
+                height: 96px;
+                width: 96px;
+                object-fit: cover;
+                border-radius: 500px;
+            }
+
+            .name{
+                font-weight: 700;
+                font-size: 18px;
+            }
+
+            .desc {
+                font-style: italic;
+                font-size: 15px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+}

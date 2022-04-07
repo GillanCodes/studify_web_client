@@ -1,0 +1,32 @@
+.reportPop {
+    
+    text-align: center;
+
+    .title {
+        padding: 10px;
+    }
+
+    .fields {
+        display: grid;
+        justify-content: center;
+    }
+
+    .reason {
+        font-size: 18px;
+        padding: 5px;
+        margin: 2px;
+        border-radius: 10px;
+        background-color: $dark2;
+        cursor: pointer;
+    }
+
+    .reason:hover {
+        background-color: $dark1;
+    }
+
+    .success {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+}

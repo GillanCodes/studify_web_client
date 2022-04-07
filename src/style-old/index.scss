@@ -1,0 +1,161 @@
+@import './settings';
+@import "./printing";
+
+// @media only screen and (min-width: 1250px) 
+
+@import './universal/auth';
+@import './universal/homescreen';
+@import './universal/introduction';
+@import './universal/threads';
+    
+@import './universal/components/file';
+@import './universal/components/notification';
+@import './universal/components/squarenav';
+@import './universal/components/popup';
+@import './universal/components/currentUsers';
+@import './universal/components/report';
+@import './universal/components/searchBar';
+
+@import './universal/components/quizz';
+
+    
+@media only screen and (min-width: 1000px) {
+    .not-desktop {
+        display: none
+    }
+    @import './desktop/navbar';
+    @import './desktop/library';
+    @import './desktop/components/editor';
+    @import './desktop/profil';
+    @import './desktop/components/quizzResult';
+}
+
+@media only screen and (max-width: 1000px) {
+    .not-mobile {
+        display: none
+    }
+    
+    .is-mobile-spaced {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    @import './mobile/navbar';
+    @import './mobile/library';
+    @import './mobile/components/editor';
+    @import './mobile/components/quizz';
+    @import './mobile/profil';
+    @import './mobile/components/quizzResult';
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    font-family: Roboto;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto;
+}
+
+.app-container {
+    min-height: 80vh;
+}
+
+
+.is-success {
+    color: $success
+}
+
+.is-spaced {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+button.button {
+    text-align: center;
+    justify-content: center;
+    width: 140px;
+    height: 36px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 1px;
+    border: none;
+    background-color: rgb(39, 0, 195);
+}
+
+button.button:hover {
+    background-color: rgb(32, 0, 158);
+}
+
+button.button.success {
+    background-color: $success-dark;
+}
+button.button.success:hover {
+    background-color: $success-dark-hover;
+}
+
+button.button.info {
+    background-color: $info-dark;
+}
+button.button.info:hover {
+    background-color: $info-dark-hover;
+}
+
+button.button.error {
+    background-color: $error-dark;
+}
+button.button.error:hover {
+    background-color: $error-dark-hover;
+}
+
+button.button:disabled {
+    background-color: rgb(142, 142, 142);
+}
+
+footer.footer {
+
+    height: $footer-height;
+    margin-top: 100px;
+    padding-top: 100px;
+    
+    background: $light1;
+
+    .copyright {
+        text-align: center;
+    }
+
+    a {
+        color: $link;
+    }
+
+    .links {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 25px;
+
+        ul {
+            list-style: none;
+            list-style-position: outside;
+
+           
+
+            li a:hover{
+                color: $text-color2;
+                transition-duration: 100ms;
+            }
+        }
+
+        
+    }
+
+}
