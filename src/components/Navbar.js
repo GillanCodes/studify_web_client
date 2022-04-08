@@ -78,7 +78,7 @@ export default function Navbar() {
 				<FormControlLabel control={<Switch checked={isLight} onChange={themeHandle} />} label={cookies.theme === "day" ? "Jour" : "Nuit" } />
 				</p>
 				<p className="nav-item">
-					<span className='version text'>Version du 25 Mars 2022</span>
+					<span className='version text'>Version du 08 Avril 2021</span>
 				</p>
 				
 			</div>

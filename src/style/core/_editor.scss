@@ -1,7 +1,7 @@
 
     //Properties
 .sheet-container .ql-editor {
-    min-width: 8.5in;
+    width: 8.5in;
     min-height: 11in;
     padding: 1in;
     margin: 1rem;
@@ -9,9 +9,10 @@
     background-color: white;
 
     @media screen and(max-width: 800px) {
+        min-width: 8.5in;
         scale: 0.45;
         transform: translate(0, -60%);
-        margin-bottom: -1500px;
+        margin-bottom: -500px;
     }
 
   }
