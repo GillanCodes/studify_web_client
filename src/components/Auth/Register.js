@@ -66,11 +66,11 @@ export default function Register({ intro }) {
   return (
       <div className="register-container">
           
-            {intro && (
-                <div className="content">
-                    <h1 className='title'>S'enregistrer</h1>
-                </div>
-            )}
+
+            <div className="content">
+                <h2 className='title'>S'enregistrer</h2>
+            </div>
+
 
             {formSubmit && !intro && (
                 <div className="notification is-success">

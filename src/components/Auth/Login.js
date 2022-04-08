@@ -37,7 +37,7 @@ export default function Login() {
   return (
         <div className="login-container">
              <div className="content">
-                <h1 className='title'>Se connecter</h1>
+                <h2 className='title'>Se connecter</h2>
             </div>
 
             {NotificationDisplay && (
