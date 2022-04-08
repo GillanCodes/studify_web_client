@@ -5,6 +5,8 @@ import { isEmpty } from './Utils';
 import { UIdContext } from './App.context';
 import Notification from './Notification/Notification';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { FormControlLabel, Switch } from '@mui/material';
 
 export default function Navbar() {
 
@@ -13,6 +15,8 @@ export default function Navbar() {
 
 
   	const [displayUser, setDisplayUser] = useState(false);
+	const [cookies, setCookie] = useCookies(['theme'])
+	const [isLight, setIsLight] = useState()
 
 	useEffect(() => {
 		if (!isEmpty(uid) && !isEmpty(userData)) { 
@@ -21,6 +25,24 @@ export default function Navbar() {
 			setDisplayUser(false);
 		}
 	}, [uid, userData])
+
+	useEffect(() => {
+		if (cookies.theme === "day") {
+			setIsLight(true)
+		} else {
+			setIsLight(false)
+		}
+	}, [])
+	
+
+	const themeHandle = (e) => {
+		if (isLight) {
+		 setCookie("theme", "night")
+		} else {
+		 setCookie("theme", "day")
+		}
+		setIsLight(!isLight)
+	}
 
 	const logoutHandle = () => {
 		axios({
@@ -33,8 +55,6 @@ export default function Navbar() {
 		}).catch((err) => {
 			console.log(err);
 		})
-
-		
 	}
 
 	return (
@@ -54,6 +74,9 @@ export default function Navbar() {
 				<NavLink exact="true" to="/partners" className={"nav-item"}>
 					<i className="fas fa-handshake"></i> <span className='text'>Nos Partenaires</span>
 				</NavLink>
+				<p className="nav-item">
+				<FormControlLabel control={<Switch checked={isLight} onChange={themeHandle} />} label={cookies.theme === "day" ? "Jour" : "Nuit" } />
+				</p>
 				<p className="nav-item">
 					<span className='version text'>Version du 25 Mars 2022</span>
 				</p>

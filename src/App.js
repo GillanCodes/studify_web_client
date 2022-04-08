@@ -9,6 +9,7 @@ import { io } from 'socket.io-client';
 import './style/index.scss';
 import { getNotifications } from './action/notification.action';
 import { isEmpty } from './components/Utils';
+import { useCookies } from 'react-cookie';
 
 function App() {
 
@@ -55,11 +56,15 @@ function App() {
     return 
   }, [socket, userData])
 
+  const [cookies] = useCookies(['theme', {path: "/"}]);
+
 
   return (
-    <UIdContext.Provider value={UId}>
-      <Routes />
-    </UIdContext.Provider>
+    <div className={cookies.theme === "day" ? 'app light' : 'app dark'}>
+      <UIdContext.Provider value={UId}>
+        <Routes />
+      </UIdContext.Provider>
+    </div>
   );
 }
 

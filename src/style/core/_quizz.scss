@@ -2,9 +2,6 @@
 
     .quizz-container {
 
-        background-color: $color-d-main;
-        color: $color-a-bright;
-
         .questions {
 
             .buttons {
@@ -37,10 +34,10 @@
                 }
     
                 .button.win {
-                    background-color: rgb(12, 187, 0);
+                    background-color: $green;
                 }
                 .button.loose {
-                    background-color: rgb(255, 44, 44);
+                    background-color: $red;
                 }
     
                 .button.end {

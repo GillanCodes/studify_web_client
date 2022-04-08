@@ -1,39 +1,9 @@
-    //Colors
-
-.introduction {
-
-    background-color: $color-d-main;
-    color: $color-a-bright;
-
-    .stats_container {
-
-        .stat {
-            background-color: $color-a-bright;
-            color: $black;
-        }
-
-        .stat:hover {
-            background-color: $color-a-light;
-           
-        }
-    }
-
-    .box {
-        p {
-            a {
-                color: $color-a-light;
-            }
-        }
-    }
-}
-
-
     //Properties
 
 
 .introduction {
 
-    overflow-y: hidden;
+    overflow-x: hidden;
     padding-bottom: $default-margin;
 
     .header img {

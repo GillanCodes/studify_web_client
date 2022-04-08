@@ -1,16 +1,9 @@
-.popup {
-    background-color: $color-d-main;
-
-    .head {
-        background: $color-d-bright;
-    }
+.popup { //PopUp
+    background-color: $color-l-main;
+    .head { background: $color-l-darker; }
 }
-
 .titlePop {
-
-    .button {
-        background-color: #FFF;
-    }
+    .button { background-color: #FFF; }
 }
 
 

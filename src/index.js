@@ -13,6 +13,9 @@ import { getSheets } from './action/sheets.action';
 import { getUsers } from './action/users.action';
 import { getAnswers, getQuizz } from './action/quizz.action';
 
+import {CookiesProvider} from 'react-cookie';
+
+
 const store = createStore(
   rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
 );
@@ -28,8 +31,10 @@ store.dispatch(getAnswers());
 
 
 ReactDOM.render(
+  <CookiesProvider>
     <Provider store={store}>
       <App />
-    </Provider>,
+    </Provider>
+  </CookiesProvider>,
   document.getElementById('root')
 );

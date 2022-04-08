@@ -7,6 +7,7 @@ import File from './HomeScreen/File';
 import { getSheets } from '../../action/sheets.action';
 import { getQuizz } from '../../action/quizz.action';
 import Quizz from './HomeScreen/Quizz';
+import { Cookies, useCookies } from 'react-cookie';
 
 export default function Homescreen() {
 
@@ -15,7 +16,6 @@ export default function Homescreen() {
     
     const [searchType, setSearchType] = useState('tag');
     const [search, setSearch] = useState('');
-
     const sheetsData = useSelector(state => state.sheetsReducer);
     const quizzData = useSelector(state => state.quizzReducer);
     const userData = useSelector(state => state.userReducer);
@@ -78,7 +78,7 @@ export default function Homescreen() {
 
     return (
 
-        <div className='homescreen-container app-container'>
+        <div className="homescreen-container app-container">
             <div className="search">
                 <input type="text" name="" id="" onChange={(e) => setSearch(e.target.value)} />
                 <select onClick={(e) => setSearchType(e.target.value)}>

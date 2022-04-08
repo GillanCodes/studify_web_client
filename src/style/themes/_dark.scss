@@ -1,0 +1,122 @@
+.app.dark {
+    
+        //Core
+    .homescreen-container { //HomeScreen
+        background-color: $color-d-main;
+        color: $white;
+    }
+
+    .navbar-container { //Navbar
+        background-color: $color-d-darker;
+        .navbar-content{
+            .nav-item{ color: $white; }
+            .active { color: $color-a-light; }
+        }
+    }
+
+    .library-container {
+        background-color: $color-d-main;
+        color: $color-a-bright;
+    }
+
+    .profil-container {
+        background-color: $color-d-main;
+        color: $color-a-bright;
+    }
+
+    .thread-content {
+        background-color: $color-d-main;
+    }
+
+    .quizz-container {
+        background-color: $color-d-main;
+        color: $color-a-bright;
+    }
+
+    .sheet-container{
+        background-color: $color-d-main;
+    }
+
+    .auth-container {
+        background-color: $color-d-main;
+        color: $color-a-bright;
+    
+        .notification {
+            background-color: $green-dark;
+        }
+    }
+
+    .introduction {
+
+        background-color: $color-d-main;
+        color: $color-a-bright;
+    
+        .stats_container {
+    
+            .stat {
+                background-color: $color-a-bright;
+                color: $black;
+            }
+    
+            .stat:hover {
+                background-color: $color-a-light;
+               
+            }
+        }
+    
+        .box {
+            p {
+                a {
+                    color: $color-a-light;
+                }
+            }
+        }
+    }
+    
+    //Components
+    .search {
+        input[type=text], select {
+            background-color: $color-d-dark;
+            color: $color-a-bright;
+        }
+    }
+
+    .file { //File
+    
+        .file-head { color: $color-a-bright }
+        .file-footer {
+            .sheet-title { color: $color-a-bright; }
+        }
+    }
+
+    .dropdown-content {
+        background-color: $color-d-light;
+        .notification-box { background-color: $color-d-bright; }
+        .notification-box:hover, .notification-box.unread:hover { background-color: $color-d-light; }
+        .notification-box.unread { background-color: $color-a-bright; }
+    }
+
+    .navigation {
+        background: $color-d-darker;
+    }
+    
+    .navigation span {
+        background-color: $white;
+    }
+    
+    .navigation.active span {
+        background-color: $color-a-light;
+    }
+
+    .current {
+        background: $color-d-darker;
+        color: white;
+    }
+    
+    .current:hover {
+        background: $color-d-darker;
+    }
+
+    
+
+}   
