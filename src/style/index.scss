@@ -8,12 +8,15 @@
 
 @import './core/navbar';
 @import './core/homescreen';
+@import './core/introduction';
 @import './core/library';
 @import './core/threads';
 @import './core/profil';
 @import './core/editor';
 @import './core/quizz';
 
+
+@import './components/auth';
 @import './components/file';
 @import './components/searchbar';
 @import './components/currentUsers';

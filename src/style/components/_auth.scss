@@ -1,0 +1,254 @@
+    //Colors
+.auth-container {
+    background-color: $color-d-main;
+    color: $color-a-bright;
+
+    .notification {
+        background-color: $green-dark;
+    }
+}
+
+
+    //Properties
+.auth-container {
+
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+    .auth-content {
+        display: flex;
+        
+
+        @media screen and (max-width: $media-screen) {
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: $default-margin;
+
+            .register-container, .login-container {
+                margin-bottom: $default-margin;
+            }
+        }
+
+        @media screen and (min-width: $media-screen) {
+            flex-wrap: nowrap;
+            justify-content: center;
+            padding-bottom: $default-margin;
+        }
+
+    }
+}
+
+.register-container, .login-container {
+    border: 2px solid $color-a-bright;
+    border-radius: 5px;
+
+    height: 50vh;
+    min-height: 500px;
+    
+    margin-left: 50px;
+    margin-right: 50px;
+
+    
+
+    @media screen and (max-width: $media-screen) {
+        width: 300px;
+    }
+
+    @media screen and (min-width: $media-screen) {
+        width: 500px;
+    }
+
+    .notification {
+        
+
+        width: fit-content;
+        padding: 10px;
+        margin: auto;
+        margin-top: 10px;
+
+        border-radius: 10px;
+    }
+
+    .content {
+
+        margin-top: 15px;
+
+
+        .title {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .field {
+            text-align: center;
+            margin: 20px;
+
+            span {
+                font-size: 15px;
+                font-weight: 300;
+                font-style: italic;
+                display: block;
+            }
+
+            input[type=text],  input[type=password],  input[type=email] {
+
+                border-radius: 10px;
+                border: 1px $color-a-bright solid;
+                padding: 5px;
+                font-size: 20px;
+                margin-top: 5px;
+                
+                box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+                -webkit-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+            }
+
+            input[type=submit] {
+
+                border: solid 1px $color-a-bright;
+                border-radius: 5px;
+                font-size: 15px;
+                font-weight: 500;
+                padding: 10px;
+                background-color: $color-a-bright;
+            }
+
+            input[type=submit]:hover {
+                background-color: $color-a-light;
+            }
+
+        }
+
+        .field:hover {
+            span {
+                font-style: normal;
+            }
+        }
+
+    }
+
+}
+
+
+// @media only screen and (max-width: 800px) {
+       
+//     .auth-container {
+
+//         margin-top: 0;
+    
+//         .auth-content {
+//             display: flex;
+//             flex-wrap: wrap;
+//             justify-content: center;
+    
+//         }
+    
+//         .register-container, .login-container {
+//             border: 2px solid $color-a-bright;
+//             border-radius: 5px;
+    
+//             height: 50vh;
+//             min-height: 150px;
+//             width: 600px;
+//             margin-left: 50px;
+//             margin-right: 50px;
+
+//             margin-top: 30px;
+    
+//             .content {
+    
+//                 .title {
+//                     text-align: center;
+//                 }
+    
+//             }
+    
+//         }
+//     }
+
+// }
+
+// .introduction {
+
+
+//     .register-container {
+//         border: 2px solid $color-a-bright;
+//         border-radius: 5px;
+
+//         height: 450px;
+//         min-height: 300px;
+//         width: 500px;
+//         margin-left: 50px;
+//         margin-right: 50px;
+
+        
+
+//         .notification {
+//             background-color: $green;
+
+//             width: fit-content;
+//             padding: 10px;
+//             margin: auto;
+//             margin-top: 10px;
+
+//             border-radius: 10px;
+//         }
+
+//         .content {
+
+//             .title {
+//                 text-align: center;
+//                 text-decoration: underline;
+//             }
+
+//             .field {
+//                 text-align: center;
+//                 margin: 20px;
+
+//                 span {
+//                     font-size: 15px;
+//                     font-weight: 300;
+//                     font-style: italic;
+//                     display: block;
+//                 }
+
+//                 input[type=text],  input[type=password],  input[type=email] {
+
+//                     border-radius: 10px;
+//                     border: 1px $border solid;
+//                     padding: 5px;
+//                     font-size: 20px;
+//                     margin-top: 5px;
+                    
+//                     box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+//                     -webkit-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+//                     -moz-box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.75);
+//                 }
+
+//                 input[type=submit] {
+
+//                     border: solid 1px $border;
+//                     border-radius: 5px;
+//                     font-size: 15px;
+//                     font-weight: 500;
+//                     padding: 10px;
+//                     background-color: $button;
+//                 }
+
+//                 input[type=submit]:hover {
+//                     background-color: $button-hover;
+//                 }
+
+//             }
+
+//             .field:hover {
+//                 span {
+//                     font-style: normal;
+//                 }
+//             }
+
+//         }
+
+//     }
+
+// }
