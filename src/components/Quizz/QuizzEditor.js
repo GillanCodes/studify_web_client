@@ -36,7 +36,6 @@ export default function QuizzEditor({ quizz }) {
 
     const saveQuestionHandle = (question_id) => {
         dispatch(editQuestion(quizz._id, question_id, question, answer)).then(() => setEdit());
-        
     }
 
     useEffect(() => {
