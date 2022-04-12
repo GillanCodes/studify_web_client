@@ -12,6 +12,11 @@ import Profil from '../UserUpdate/Profil';
 import QuizzThread from '../Library/QuizzThread';
 import Quizz from '../Quizz/Quizz';
 import QuizzResults from '../Quizz/Results/QuizzResults';
+import About from '../static/About';
+import Contact from '../static/Contact';
+import CGU from '../static/CGU';
+import Jobs from '../static/Jobs';
+import Partners from '../static/Partners';
 
 export default function index() {
   return (
@@ -28,6 +33,13 @@ export default function index() {
             <Route path="/quizz/:id" exact="true" element={<Quizz />} />
             <Route path="/sheet/:id" exact="true" element={<Sheet />} />
             <Route path="/:username" exact="true" element={<Profil />} />
+
+            <Route path="/about" exact="true" element={<About />} />
+            <Route path="/contact" exact="true" element={<Contact />} />
+            <Route path="/cgu" exact="true" element={<CGU />} />
+            <Route path="/jobs" exact="true" element={<Jobs />} />
+            <Route path="/partners" exact="true" element={<Partners />} />
+
         </Routes>
       </BrowserRouter>
   );
