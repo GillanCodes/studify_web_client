@@ -1,0 +1,53 @@
+.jobs-container {
+
+    min-height: calc(100vh - $footer-height);
+
+    h1{
+        text-align: center;
+        text-decoration: underline;
+        padding-top: $default-margin;
+    }
+
+    .content{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+
+        padding: $default-margin;
+
+        .jobs {
+
+            padding: 10px;
+
+            border: 2px solid $color-a-bright;
+            border-radius: 10px;
+
+            width: 300px;
+            height: 200px;
+            
+            .head {
+                .title {
+                    text-align: center;
+                    text-decoration: underline;
+                }
+            }
+
+            .body {
+                padding: 10px 5px;
+            }
+
+            .foot {
+                p {
+                    text-align: center;
+                    text-decoration: underline;
+                    font-style: italic;
+                }
+            }
+
+        }
+
+    }
+}

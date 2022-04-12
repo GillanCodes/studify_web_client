@@ -1,0 +1,46 @@
+.partners-container {
+
+    min-height: calc(100vh - $footer-height);
+
+    h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding-top: $default-margin;
+    }
+    
+        .content {
+            padding: $default-margin 0px;
+        
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        
+            .box {
+                text-align: center;        
+        
+                .icon {
+                    height: 96px;
+                    width: 96px;
+                    object-fit: cover;
+                    border-radius: 500px;
+                }
+        
+                .name{
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+        
+                .desc {
+                    font-style: italic;
+                    font-size: 15px;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+
+
+    
+    
+}
