@@ -110,7 +110,6 @@ export const getAnswers = () => {
 }
 
 export const sendAnswer = (quizz_id, answers, title) => {
-    console.log(answers)
     return(dispatch) => {
         return axios({
             method:"post",
