@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addQuestion, editQuestion, editQuizz, removeQuestion } from '../../action/quizz.action';
+import { addQuestion, deleteQuizz, editQuestion, editQuizz, removeQuestion } from '../../action/quizz.action';
 import { isEmpty } from '../Utils';
 import { Switch, FormControlLabel } from '@mui/material';
 
@@ -23,6 +23,10 @@ export default function QuizzEditor({ quizz }) {
 
     const save = () => {
             dispatch(editQuizz(quizz._id, title, level, isPublic))
+    }
+
+    const deleteQuizzHandle = () => {
+        dispatch(deleteQuizz(quizz._id));
     }
 
     const addQuestionHandle = () => {
@@ -107,12 +111,16 @@ export default function QuizzEditor({ quizz }) {
                                     </div>
                                 </div>
                             )}
-                            
                         </div>
                     )
                 })}
             </>
         )}
+
+        <div className="delete">
+            <button onClick={deleteQuizzHandle} className="button delete">Supprimer le Quizz</button>
+        </div>
+
     </div>
   )
 }

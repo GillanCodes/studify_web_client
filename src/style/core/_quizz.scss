@@ -166,6 +166,16 @@
     
         }
     
+        div.delete {
+            padding-top: 5em;
+            text-align: center;
+
+            .delete {
+                background-color: $red;
+                width: 500px;
+            }
+        }
+
     }
 }
 

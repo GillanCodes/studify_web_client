@@ -41,6 +41,21 @@ export const editQuizz = (quizz_id, title, level, isPublic) => {
     }
 }
 
+export const deleteQuizz = (quizz_id) => {
+    return(dispatch) => {
+        return axios({
+            method:"delete",
+            withCredentials: true,
+            url: `${process.env.REACT_APP_API_URL}/api/quizz/${quizz_id}`,
+        }).then((res) => {
+            window.location = "/";
+            dispatch({type: GET_QUIZZ, payload: res.data});  
+        }).catch((err) => {
+            throw Error(err);
+        })
+    }
+}
+
 export const addQuestion = (quizzId, question, answer) => {
     return(dispatch) => {
         return axios({

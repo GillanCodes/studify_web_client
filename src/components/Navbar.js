@@ -75,7 +75,7 @@ export default function Navbar() {
 					<i className="fas fa-handshake"></i> <span className='text'>Nos Partenaires</span>
 				</NavLink>
 				<p className="nav-item">
-				<FormControlLabel control={<Switch checked={isLight} onChange={themeHandle} />} label={cookies.theme === "day" ? "Jour" : "Nuit" } />
+					<FormControlLabel control={<Switch checked={isLight} onChange={themeHandle} />} label={cookies.theme === "day" ? "Jour" : "Nuit" } />
 				</p>
 				<p className="nav-item">
 					<span className='version text'>Version du 08 Avril 2021</span>
