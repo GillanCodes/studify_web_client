@@ -111,6 +111,9 @@ export default function Register({ intro }) {
                             <input type="submit" value="S'enregistrer" />
                         </div>
                     )}
+                    <div className="field">
+                        <p>Lire les <a href="/cgu">Conditions Générales d'Utilisation</a></p>
+                    </div>
                 </div>
             </form>
 
