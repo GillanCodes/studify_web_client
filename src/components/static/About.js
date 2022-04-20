@@ -40,7 +40,7 @@ export default function About() {
             <div className="box text">
                 <h2>Nos objectifs</h2>
                 <p>
-                Le projet « Studify » existe pour le moment uniquement en version française et donc se limite à un public francophone. Notre objectif durant la prochaine année est de créer des traductions pour rendre le site accessible à une grande partie du monde. <br />
+                Le projet « Studify » existe pour le moment uniquement en version française et donc se limite à un public francophone. Notre objectif durant la prochaine année est de créer des traductions pour rendre le site accessible à une grande partie du monde. <br />
                 <br />
                 Nous savons que la version mobile est <b>utilisable</b> mais pas <b>OPTIMAL</b>, c'est pourquoi dans un futur proche nous espérons pouvoir développer une application pour IOS et Android afin de faciliter la vie des utilisateurs sur téléphone et tablette.
                 </p>
