@@ -57,7 +57,7 @@ export default function Notification() {
                     <button onClick={markAllRead}>Marquer Tout comme Lu</button>
                 </div>
 
-                {notificationsData.reverse().map((notification) => {                  
+                {notificationsData.map((notification) => {                  
                     return (
                         <NotificationBox notification={notification} />
                     )
