@@ -35,7 +35,14 @@ export default function NotificationBox({notification}) {
 
   return (
     <div className={`notification-box ${notification.readed ? "" : "unread"}`} key={notification._id}>
-        <img src={notification.image} alt="Noti" className='notification-image' />
+        {notification.icon === "welcome" && (<i className="fa-solid fa-medal"></i>)}
+        {notification.icon === "sheet-update" && (<i className="fa-solid fa-file-circle-exclamation"></i>)}
+        {notification.icon === "sheet-add" && (<i className="fa-solid fa-file-circle-plus"></i>)}
+        {notification.icon === "sheet-remove" && (<i className="fa-solid fa-file-circle-minus"></i>)}
+        {notification.icon === "quizz-update" && (<i className="fa-solid fa-file-circle-exclamation"></i>)}
+        {notification.icon === "quizz-delete" && (<i className="fa-solid fa-file-circle-xmark"></i>)}
+        {notification.icon === "displayname-reset" && (<i className="fa-solid fa-user-tag"></i>)}
+        {notification.icon === "pp-reset" && (<i className="fa-solid fa-user-xmark"></i>)}
         <p className="notification-content">{notification.content}</p>
         <div className="controls">
             {!notification.readed && ( <span data-tip="Marquer comme lu" onClick={markRealdHandle}><i className="fas fa-eye-slash unread"></i></span> )}
