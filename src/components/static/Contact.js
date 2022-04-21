@@ -55,7 +55,7 @@ export default function Contact() {
         <h2>Nos réseaux sociaux</h2>
         <div className="links">
           <a href="https://twitter.com/opencodess">Twitter</a>
-          <a href="mailto:opencodess@gmail.com">Mail</a>
+          <a href="mailto:contact.codeed@gmail.com">Mail</a>
 
         </div>
       </div>

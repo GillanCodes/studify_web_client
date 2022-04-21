@@ -11,12 +11,12 @@ export default function Partners() {
             <div className="box">
                 <img className='icon' src="/cdn/content/partenaires/gillancodes.png" alt="OpenCodes" />
                 <p className='name'>GillanCodes</p>
-                <p className='desc'>Fondateur, RevTon'Bac & OpenCodes</p>
+                <p className='desc'>Fondateur, Studify & Codeed</p>
             </div>
 
             <div className="box">
                 <img className='icon' src="/cdn/content/partenaires/opencodes.png" alt="OpenCodes" />
-                <p className='name'>OpenCodes</p>
+                <p className='name'>Codeed</p>
                 <p className='desc'>Fondateur, Editeur et Developpeur du projet</p>
             </div>
 
