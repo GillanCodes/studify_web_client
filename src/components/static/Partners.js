@@ -9,15 +9,21 @@ export default function Partners() {
         <div className="content">
            
             <div className="box">
-                <img className='icon' src="/cdn/content/partenaires/gillancodes.png" alt="OpenCodes" />
+                <img className='icon' src="/cdn/content/partenaires/gillancodes.png" alt="GillanCodes" />
                 <p className='name'>GillanCodes</p>
                 <p className='desc'>Fondateur, Studify & Codeed</p>
             </div>
 
             <div className="box">
-                <img className='icon' src="/cdn/content/partenaires/opencodes.png" alt="OpenCodes" />
+                <img className='icon' src="/cdn/content/partenaires/opencodes.png" alt="Codeed" />
                 <p className='name'>Codeed</p>
                 <p className='desc'>Fondateur, Editeur et Developpeur du projet</p>
+            </div>
+
+            <div className="box">
+                <img className='icon' src="/cdn/content/partenaires/pufferstyl.png" alt="Puffer" />
+                <p className='name'>Puffer</p>
+                <p className='desc'>Porteur du Projet, Beta-Testeur & Graphiste</p>
             </div>
 
         </div>
