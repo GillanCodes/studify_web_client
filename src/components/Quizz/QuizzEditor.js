@@ -6,10 +6,14 @@ import { Switch, FormControlLabel } from '@mui/material';
 
 export default function QuizzEditor({ quizz }) {
 
-    const [title, setTitle] = useState();
-    const [level, setLevel] = useState();
+    const [init, setInit] = useState(false);
+    const [info, setInfo] = useState({});
+    const [oldInfo, setOldInfo] = useState({});
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
+    const [newQuestion, setNewQuestion] = useState("");
+    const [newAnswer, setNewAnswer] = useState("");
+    const [save, setSave] = useState(true);
     const [edit, setEdit] = useState();
     const [isPublic, setIsPublic] = useState();
 
@@ -21,8 +25,9 @@ export default function QuizzEditor({ quizz }) {
         setQuestion(question.question)
     }
 
-    const save = () => {
-            dispatch(editQuizz(quizz._id, title, level, isPublic))
+    const saving = () => {
+        console.log(info)
+        // dispatch(editQuizz(quizz._id, title, level, isPublic))
     }
 
     const deleteQuizzHandle = () => {
@@ -30,8 +35,9 @@ export default function QuizzEditor({ quizz }) {
     }
 
     const addQuestionHandle = () => {
-        dispatch(addQuestion(quizz._id, question, answer))
-        
+        setNewAnswer('');
+        setNewQuestion('');
+        dispatch(addQuestion(quizz._id, newQuestion, newAnswer))
     }
 
     const removeQuestionHandle = (question_id) => {
@@ -39,14 +45,35 @@ export default function QuizzEditor({ quizz }) {
     }
 
     const saveQuestionHandle = (question_id) => {
+        setAnswer('');
+        setQuestion('');
         dispatch(editQuestion(quizz._id, question_id, question, answer)).then(() => setEdit());
     }
 
     useEffect(() => {
+        if (!isEmpty(info) && !isEmpty(oldInfo)){
+            if (oldInfo.title === info.title && oldInfo.level === info.level && oldInfo.isPublic === info.isPublic){
+                setSave(true);
+                return null
+            } else {
+                setSave(false);
+                var interval = setInterval(() => {
+                    setOldInfo(info)
+                    console.log(info)
+                    dispatch(editQuizz(quizz._id, info.title, info.level, info.isPublic));
+                }, 2000);
+                
+                return () => {
+                    clearInterval(interval)
+                };
+            } 
+        }
+    }, [info, oldInfo, quizz]);
+
+    useEffect(() => {
       if (!isEmpty(quizz)) {
-        setTitle(quizz.title)
-        setLevel(quizz.level)
-        setIsPublic(quizz.isPublic)
+        setInfo({level: quizz.level, title: quizz.title, isPublic: quizz.isPublic})
+        setOldInfo({level: quizz.level, title: quizz.title, isPublic: quizz.isPublic})
       }
     }, [quizz]);
     
@@ -60,12 +87,16 @@ export default function QuizzEditor({ quizz }) {
             </div>
             <div className="question">
                 <div className="info">
-                    <span>Titre <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} /></span>
-                    <span>Niveau <input type="text" name="title" id="title" value={level} onChange={(e) => setLevel(e.target.value)} /></span> 
-                    <FormControlLabel control={<Switch checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />} label={"Public"} />
+                    <span>Titre <input type="text" name="title" id="title" value={info.title} onChange={(e) => setInfo(info => ({...info, title: e.target.value}))} /></span>
+                    <span>Niveau <input type="text" name="title" id="title" value={info.level} onChange={(e) => setInfo(info => ({...info, level: e.target.value}))} /></span> 
+                    <FormControlLabel control={<Switch checked={info.isPublic} onChange={(e) => setInfo(info => ({...info, isPublic: e.target.checked}))} />} label={"Public"} />
                 </div>
-                <div className="buttons">
-                    <button onClick={save} className="button add">Sauvegarder</button>
+                <div className="quizz-save">
+                    {save ? (
+                        <i className="fas fa-save" data-tip="Document Sauvegarder"></i>
+                    ) : (
+                        <i className="fas fa-sync fa-spin" data-tip="Enregistrement en Cours ..."></i>
+                    )}
                 </div>
             </div>
         </div>
@@ -73,8 +104,8 @@ export default function QuizzEditor({ quizz }) {
         <div className="field questions question-add">
             <div className='question'>
                 <div className="text">
-                    <span>Question : <input type="text" onChange={(e) => setQuestion(e.target.value)} /></span>
-                    <span>Réponse : <input type="text" onChange={(e) => setAnswer(e.target.value)} /></span>
+                    <span>Question : <input type="text" onChange={(e) => setNewQuestion(e.target.value)} value={newQuestion} /></span>
+                    <span>Réponse : <input type="text" onChange={(e) => setNewAnswer(e.target.value)} value={newAnswer} /></span>
                 </div>
                 <div className="buttons">
                     <button onClick={addQuestionHandle} className="add">Ajouter</button>
