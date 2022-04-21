@@ -30,7 +30,7 @@ export default function Editor({ sheet }) {
         ["blockquote", "code-block", 'image'],
     ] ,
     ImageResize : {
-        modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]
+        modules: [ 'Resize', 'DisplaySize']
     },
     imageCompress: {
         quality: 0.5,
