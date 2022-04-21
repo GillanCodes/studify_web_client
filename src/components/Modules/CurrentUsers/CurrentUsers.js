@@ -24,14 +24,8 @@ export default function CurrentUsers({currentUsers}) {
                     return (
                         <>
                             <a href={`./${user.username}`}>
-                                <div className="img-display" data-tip={user.username}>
-                                    <img src={user.userPic.imageUrl} alt="" data-tip={user.username} />
-                                    {/* <img src={user.userPic.imageUrl} alt="PP" style={
-                                        {
-                                            objectPosition:`${(user.userPic.x / user.userPic.scale)/(32*user.userPic.scale)}px ${(user.userPic.y / user.userPic.scale)/(32*user.userPic.scale)}px`, 
-                                            transform: `scale(${user.userPic.scale})`,
-                                        }
-                                    }/> */}
+                                <div className="img-display" data-tip={`${user.username} ${user.admin ? " - Admin" : ''}`}>
+                                    <img src={user.userPic.imageUrl} alt={user.username} data-tip={`${user.username} ${user.admin ? " - Admin" : ''}`} />
                                 </div>
                             </a>
                             <ReactTooltip effect='solid' />
