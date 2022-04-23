@@ -37,13 +37,6 @@ export default function Introduction() {
       <div className="container">
         <div className="box">
           <h1 className='title'>Le Projet</h1>
-          <p className='article'>
-            Le but de RevTonBac ? <br /> <br />
-            <strong>Reviser !</strong> et ce de façon plus rapide et plus simple ! <br /> <br />
-            <strong>Comment ?</strong> en apportant le support web / mobile, en etant en ligne et en etant simplifié pour aller a l'essentiel des besoins d'un étudiant ! <br /> <br />
-            <strong>Nous mettons a disposition</strong> un systeme de traitement de text comme word mais en ligne et gratuit ! <br /> <br />
-            <strong>En proposant des Quizz !</strong> Créer par la communauté, vous trouverez des quizz de tout niveau, de toutes matieres, et si aucun ne vous convient, alors créez en un !
-          </p>
           <p className="article">
             Le but de Studify ? <br /> <br />
             <strong>Réviser !</strong> Et ce, de façon plus rapide et plus simple ! <br />

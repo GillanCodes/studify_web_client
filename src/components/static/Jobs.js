@@ -18,17 +18,7 @@ export default function Jobs() {
           </div>
         </div>
 
-        <div className="jobs">
-          <div className="head">
-            <p className="title">Template</p>
-          </div>
-          <div className="body">
-            <p>Objectif</p>
-          </div>
-          <div className="foot">
-            <p>Paye</p>
-          </div>
-        </div>
+
       </div> 
 
     </div>
