@@ -20,7 +20,7 @@ export default function About() {
 
         <div className="content">
             <div className="box image">
-                <img src="./cdn/content/project.jpg" alt="Illustration Project" className='illustration' />
+                <img src="./cdn/content/banner.png" alt="Illustration Project" className='illustration' />
             </div>
             <div className="box text">
                 <h2>Le projet</h2>

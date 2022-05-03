@@ -31,7 +31,7 @@ export default function Introduction() {
     <div className='introduction'>
 
       <div className="header">
-        <img src="/cdn/content/header.png" alt="" />
+        <img src="/cdn/content/banner.png" alt="" />
       </div>
 
       <div className="container">
@@ -39,9 +39,9 @@ export default function Introduction() {
           <h1 className='title'>Le Projet</h1>
           <p className="article">
             Le but de Studify ? <br /> <br />
-            <strong>Réviser !</strong> Et ce, de façon plus rapide et plus simple ! <br />
-            <strong>Comment ?</strong> En apportant le support web / mobile qu’un étudiant a besoin, en ligne et simplifié ! <br />
-            <strong>Nous mettons à disposition</strong> un système de traitement de texte comme Word, mais en ligne et gratuit ! <br />
+            <strong>Réviser !</strong> Et ce, de façon plus rapide et plus simple ! <br /> <br />
+            <strong>Comment ?</strong> En apportant le support web / mobile qu’un étudiant a besoin, en ligne et simplifié ! <br /> <br />
+            <strong>Nous mettons à disposition</strong> un système de traitement de texte comme Word, mais en ligne et gratuit ! <br /> <br />
             <strong>En proposant des Quizz !</strong> Créer par la communauté, vous trouverez des Quizz de tout niveau, de toutes matières, et si aucun ne vous convient, alors créez en !
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function Introduction() {
             </div>
 
             <div className="box">
-              <img className='icon' src="/cdn/content/partenaires/opencodes.png" alt="OpenCodes" />
+              <img className='icon' src="/cdn/content/partenaires/codeed.png" alt="OpenCodes" />
               <p className='name'>OpenCodes</p>
               <p className='desc'>Fondateur, Editeur et Developpeur du projet</p>
             </div>

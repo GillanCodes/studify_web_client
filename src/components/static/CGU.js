@@ -12,7 +12,6 @@ export default function CGU() {
         </p>
         <p>
           <span>Article 2 : Mentions Légales</span> <br />
-          L’édition du site Studify est assuré par la société Codeed inscrite sous le numéro, dont le siège social est localisé au 6 Rue du Général Leclerc, 78600, le Mesnil le Roi, France Métropolitaine. <br />
           L’hébergeur du site Studify.codeed.fr est la société OVH, sise au 2 rue Kellermann, 59100 Roubaix, France. <br />
         </p>
         <p>

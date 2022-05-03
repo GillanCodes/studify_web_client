@@ -15,7 +15,7 @@ export default function Partners() {
             </div>
 
             <div className="box">
-                <img className='icon' src="/cdn/content/partenaires/opencodes.png" alt="Codeed" />
+                <img className='icon' src="/cdn/content/partenaires/codeed.png" alt="Codeed" />
                 <p className='name'>Codeed</p>
                 <p className='desc'>Fondateur, Editeur et Developpeur du projet</p>
             </div>

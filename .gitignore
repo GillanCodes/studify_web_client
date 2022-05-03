@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/public/cdn
+/public/cdn/profile
 /.pnp
 .pnp.js
 .env
